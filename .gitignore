@@ -22,3 +22,37 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Dependency directories
+/node_modules
+
+# Environment files
+.env
+
+# Build artifacts
+/build
+/dist
+
+# Log files
+/logs
+
+# User-specific files
+*.log
+*.pid
+*.seed
+*.pid.lock
+.DS_Store
+
+# Compiled binary addons
+/build/Release
+/build/Debug
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Coverage directory
+/coverage
+
+# Yarn integrity file
+.yarn-integrity
+
