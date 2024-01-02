@@ -2,7 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import AssignmentDetails from "./AssignmentDetails";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 const AllAssignment = () => {
+  const { user } = useContext(AuthContext);
+  const handleDeleteAssignment = id => {
+    axios
+      .delete(`http://localhost:5000/assignmentDelete/${id}`)
+      .then(res => {
+        console.log("delete res: ", res);
+        allAssignmentsMutation.refetch();
+      })
+      .catch(error => console.log("error while deleting: ", error));
+  };
   const showAllAssignments = async () => {
     try {
       const response = await axios.get("http://localhost:5000/allAssignment");
@@ -35,7 +47,7 @@ const AllAssignment = () => {
 
   return (
     <div className="flex justify-between items-center">
-      <div>
+      <div className="flex gap-4">
         {allAssignmentsMutation.data.map(item => (
           <div key={item._id} className="border border-grey-600 p-4 my-2">
             <div>
@@ -49,6 +61,16 @@ const AllAssignment = () => {
             </div>
             <p>{item.title}</p>
             <p>{item.dueDate}</p>
+            {user?.email === item?.email ? (
+              <button
+                onClick={() => {
+                  handleDeleteAssignment(item._id);
+                }}
+              >
+                delete
+              </button>
+            ) : null}
+
             {/* <Link to={`/assignmentDetails/${item._id}`}>
               <button className="btn-outline">Details</button>
             </Link> */}

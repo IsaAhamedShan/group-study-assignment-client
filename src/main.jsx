@@ -12,6 +12,8 @@ import UserList from "./components/User/UserList.jsx";
 import AssignmentForm from "./pages/AssignmentForm.jsx";
 import AllAssignment from "./pages/AllAssignment.jsx";
 import AssignmentDetails from "./pages/AssignmentDetails.jsx";
+import AssignmentCompleteList from "./components/Assignment/AssignmentCompleteList.jsx";
+import SubmittedAssignment from "../src/pages/SubmittedAssignments.jsx"
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -45,7 +47,14 @@ const router = createBrowserRouter([
       {
         path:"/assignmentDetails/:id",
         element:<AssignmentDetails></AssignmentDetails>
-        
+      },
+      {
+        path:"/assignmentCompleteList",
+        element:<AssignmentCompleteList></AssignmentCompleteList>
+      },
+      {
+        path:"/submittedAssignment/:id",
+        element:<SubmittedAssignment></SubmittedAssignment>
       }
 
     ],

@@ -25,12 +25,13 @@ const {user} = useContext(AuthContext)
             marks,
             task_assignee_name:taskAssignee,
             title,
-            dueDate
+            dueDate,
+            status:'pending'
         })
         .then(res=>{
             console.log("res of submission: ", res)
             successSubmit()
-            setSubmit(true)
+            // setSubmit(true)
 
         })
         .catch(error=>{

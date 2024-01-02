@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCallback } from "react";
@@ -6,20 +6,32 @@ import { useDropzone } from "react-dropzone";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { AuthContext } from "../provider/AuthProvider";
 import { format } from "date-fns";
-const AssignmentForm = () => {
+import { AuthContext } from "../../provider/AuthProvider";
+const AssignmentUpdateForm = ({ data }) => {
+  console.log("updatedetails: ", data);
+  // const {title,description,marks,difficulty,dueDate,creationDate,image,title} = updateDetails
   // HOOKS
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState();
   const [description, setDescription] = useState("");
   const [marks, setMarks] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
   const [dueDate, setDueDate] = useState(new Date());
-  const [creationDate, setCreationDate] = useState(new Date());
   const [image, setImage] = useState(null);
   const { user } = useContext(AuthContext);
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";
+
+  useEffect(() => {
+    if (data) {
+      setTitle(data.title || "");
+      setDescription(data.description || "");
+      setMarks(data.marks || "");
+      setDifficulty(data.difficulty || "");
+      setImage(data.image || "");
+    }
+  }, [data]);
+
   //FUNCTIONS
   const successAssignmentCreation = () => {
     toast.success("Assignment created successfully!");
@@ -39,17 +51,13 @@ const AssignmentForm = () => {
   };
   const handleSubmitMutation = ({ assignmentDetails }) => {
     axios
-      .post("http://localhost:5000/allAssignments", {
+      .patch(`http://localhost:5000/assignmentUpdate/${data._id}`, {
         title,
         description,
         marks,
         difficulty,
         dueDate,
-        creationDate,
         image,
-        status: "onGoing",
-        email: user.email,
-        taskAssignee: user.displayName,
       })
       .then(res => {
         console.log(res);
@@ -116,7 +124,7 @@ const AssignmentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8">
+    <form className="max-w-lg mx-auto mt-8">
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-4">
         <label
@@ -239,6 +247,7 @@ const AssignmentForm = () => {
 
       <div className="mt-6">
         <button
+          onClick={handleSubmit}
           type="submit"
           className="bg-base-500 text-base p-2 rounded-md px-6 btn-outline border"
         >
@@ -249,4 +258,4 @@ const AssignmentForm = () => {
   );
 };
 
-export default AssignmentForm;
+export default AssignmentUpdateForm;
