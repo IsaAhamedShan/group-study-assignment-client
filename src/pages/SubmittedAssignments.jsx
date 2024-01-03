@@ -3,11 +3,13 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const SubmittedAssignments = () => {
   const [marks, setMarks] = useState("");
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const [submittedAssignmentInfo,setSubmittedAssignmentInfo] = useState([])
   const getSubmittedAssignments = async id => {
     try {
       const response = await axios.get(
@@ -41,18 +43,18 @@ const SubmittedAssignments = () => {
       <div className="text-5xl">{submittedAssignmentsQuery.error.message}</div>
     );
   }
-
-  const handleMarks = async item => {
-    console.log("item is " + item);
-    console.log("marks is: " + marks);
+const successMarking = ()=>{toast.success("Marking assignment successfully")}
+const unSuccessMarking = ()=>{toast.error("Already marked the assignment")}
+  const handleMarks = async submittedAssignmentInfo => {
+    console.log("item is " ,submittedAssignmentInfo);
+    console.log("marks is: ",marks);
     const marksDetails = {
-      marks
-,
-      assignment_id: item.assignment_id,
-      title: item.title,
-      submitter: item.name,
-      submitter_email: item.email,
-    //   grader: user.name,
+      marks,
+      assignment_id: submittedAssignmentInfo.assignment_id,
+      title: submittedAssignmentInfo.title,
+      submitter: submittedAssignmentInfo.name,
+      submitter_email: submittedAssignmentInfo.email,
+      grader: user.displayName,
       grader_email: user.email,
       marking_Time: new Date(),
     };
@@ -60,20 +62,26 @@ const SubmittedAssignments = () => {
     axios
     .post("http://localhost:5000/marksDetails", {
         marks,
-        assignment_id: item.assignment_id,
-        title: item.title,
-        submitter: item.name,
-        submitter_email: item.email,
-        // grader: user.displayName,
+        assignment_id: submittedAssignmentInfo.assignment_id,
+        title: submittedAssignmentInfo.title,
+        submitter: submittedAssignmentInfo.name,
+        submitter_email: submittedAssignmentInfo.email,
+        grader: user.displayName,
         grader_email: user.email,
         marking_Time: new Date()
     },{ timeout: 10000 })
-    .then(res => console.log("res is :", res))
-    .catch(error => console.log("post error is :", error));
+    .then(res => {console.log("res is :", res)
+successMarking()
+  
+  })
+    .catch(error => {console.log("post error is :", error)
+    unSuccessMarking()
+  });
   };
 //   console.log("Id in submitted assignments page: " + id);
   return (
     <div>
+      <Toaster></Toaster>
       <h1>Submitted Assignment</h1>
       {submittedAssignmentsQuery?.data ? (
         submittedAssignmentsQuery.data.map(item => (
@@ -84,7 +92,13 @@ const SubmittedAssignments = () => {
             {item.email !== user?.email ? (
               <button
               className="btn btn-outline"
-              onClick={() => document.getElementById("giveMark").showModal()}
+              onClick={() =>{
+                setSubmittedAssignmentInfo(item)
+               document.getElementById("giveMark").showModal()
+
+
+              }
+            }
             >
               Give Mark
             </button>
@@ -94,6 +108,11 @@ const SubmittedAssignments = () => {
             <dialog id="giveMark" className="modal">
               <div className="modal-box">
                 <div>
+                  {/* <p>task name:{item.title}</p>
+                  <p>submitted by:{item.name}</p>
+                  <p>submitted by : {item.email}</p>
+                  <p>task_assignee_email:{item.assignee_email}</p> */}
+                  {console.log("item got here ",item)}
                   <input
                     type="text"
                     name="marks"
@@ -104,7 +123,8 @@ const SubmittedAssignments = () => {
                   <button
                     className="btn btn-outline"
                     onClick={() => {
-                      handleMarks(item);
+                      handleMarks(submittedAssignmentInfo);
+                      console.log("item which is passing is :",submittedAssignmentInfo)
                     }}
                   >
                     submit

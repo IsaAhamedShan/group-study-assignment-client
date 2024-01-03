@@ -8,16 +8,19 @@ import AssignmentUpdateForm from "../components/Assignment/AssignmentUpdateForm"
 import { Link } from "react-router-dom";
 const AssignmentDetails = ({ id }) => {
   // const {id} = useParams()
+  console.log("id got in assignment details: ",id)
   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/assignmentDetails/${id}`
-        );
-        setData(response.data);
-        console.log("res is: ", response);
+        if(id){
+          const response = await axios.get(
+            `http://localhost:5000/assignmentDetails/${id}`
+          );
+          setData(response.data);
+          console.log("res is: ", response);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -25,12 +28,12 @@ const AssignmentDetails = ({ id }) => {
 
     fetchData();
   }, [id]);
-//   const handleMark=(e)=>{
-//     e.preventDefault()
-//     const form = e.target;
-//     const value = form.mark.value;
-// console.log(value)
-//   }
+  //   const handleMark=(e)=>{
+  //     e.preventDefault()
+  //     const form = e.target;
+  //     const value = form.mark.value;
+  // console.log(value)
+  //   }
 
   console.log("id is :", id);
   return (
@@ -51,11 +54,11 @@ const AssignmentDetails = ({ id }) => {
           Submit Assignment
         </button>
       ) : null}
-      {
+      {data?.status === "completed" ? (
         <Link to={`/submittedAssignment/${id}`}>
-        <button className="btn btn-outline">Submit list</button>
+          <button className="btn btn-outline">Submit list</button>
         </Link>
-      }
+      ) : null}
       {/* {data?.email !== user?.email ? (
         <button
           className="btn btn-outline"

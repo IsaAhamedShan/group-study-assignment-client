@@ -14,6 +14,7 @@ import AllAssignment from "./pages/AllAssignment.jsx";
 import AssignmentDetails from "./pages/AssignmentDetails.jsx";
 import AssignmentCompleteList from "./components/Assignment/AssignmentCompleteList.jsx";
 import SubmittedAssignment from "../src/pages/SubmittedAssignments.jsx"
+import MyLifeTimeSubmittedList from "./components/Assignment/MyLifeTimeSubmittedList.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path:"/submittedAssignment/:id",
         element:<SubmittedAssignment></SubmittedAssignment>
+      },
+      {
+        path:"/myLifeTimeSubmission/:id",
+        element:<MyLifeTimeSubmittedList></MyLifeTimeSubmittedList>
       }
 
     ],

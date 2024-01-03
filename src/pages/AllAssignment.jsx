@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import AssignmentDetails from "./AssignmentDetails";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 const AllAssignment = () => {
   const { user } = useContext(AuthContext);
+  const [idForDetails, setIdForDetails] = useState(null);
   const handleDeleteAssignment = id => {
     axios
       .delete(`http://localhost:5000/assignmentDelete/${id}`)
@@ -18,7 +19,7 @@ const AllAssignment = () => {
   const showAllAssignments = async () => {
     try {
       const response = await axios.get("http://localhost:5000/allAssignment");
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -77,14 +78,20 @@ const AllAssignment = () => {
 
             <button
               className="btn btn-outline"
-              onClick={() => document.getElementById("my_modal_1").showModal()}
+              onClick={() => {
+                
+                setTimeout(() => {
+                  setIdForDetails(item._id);
+                  document.getElementById("my_modal_1").showModal();
+                }, 1);
+              }}
             >
-              open modal
+              details
             </button>
 
             <dialog id="my_modal_1" className="modal">
               <div className="modal-box">
-                <AssignmentDetails id={item._id}></AssignmentDetails>
+                <AssignmentDetails id={idForDetails}></AssignmentDetails>
 
                 <div className="modal-action">
                   <form method="dialog">
