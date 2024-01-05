@@ -14,6 +14,8 @@ const {user} = useContext(AuthContext)
     const alreadySubmittedAssignment = ()=>{toast.error("Assignment already submitted")}
     const successSubmit = ()=>{toast.success("Assignment Submit Success!")}
     const handleSubmit=()=>{
+      const gettingMark = 0
+      const count = 0
         axios.post('http://localhost:5000/allAssignmentSubmitList',{
             name: user.displayName,
             email:user.email,
@@ -26,7 +28,9 @@ const {user} = useContext(AuthContext)
             task_assignee_name:taskAssignee,
             title,
             dueDate,
-            status:'pending'
+            status:'pending',
+            gettingMark,
+            count
         })
         .then(res=>{
             console.log("res of submission: ", res)

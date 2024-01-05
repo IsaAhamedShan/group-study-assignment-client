@@ -15,6 +15,8 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userTotalSubmissionCount, setUserTotalSubmissionCount] = useState(null)
+  const [userCreationTime,setUserCreationTime] = useState(null);
   const register = (email, password) => {
     // console.log('inside register function')
     return createUserWithEmailAndPassword(auth, email, password);
@@ -32,6 +34,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
+      setUserCreationTime(currentUser.metadata.createdAt)
       // console.log(currentUser);
     });
     return () => {
@@ -39,7 +42,7 @@ const AuthProvider = ({ children }) => {
     };
   });
 
-  const authInfo = { user,auth,register, googleSignIn, logOut, logIn };
+  const authInfo = { user,auth,register, googleSignIn, logOut, logIn,userCreationTime,userTotalSubmissionCount, setUserTotalSubmissionCount };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

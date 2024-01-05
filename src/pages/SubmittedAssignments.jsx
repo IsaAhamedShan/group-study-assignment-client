@@ -71,8 +71,20 @@ const unSuccessMarking = ()=>{toast.error("Already marked the assignment")}
         marking_Time: new Date()
     },{ timeout: 10000 })
     .then(res => {console.log("res is :", res)
-successMarking()
-  
+
+    axios.patch("http://localhost:5000/markAddToAssignment",{
+      assignment_id: submittedAssignmentInfo.assignment_id,
+      submitter_email: submittedAssignmentInfo.email,
+      marks
+
+    })
+    .then(res=>{console.log(res)})
+    .catch(error=>{
+      console.log(error)
+    })
+
+// successMarking()
+
   })
     .catch(error => {console.log("post error is :", error)
     unSuccessMarking()
