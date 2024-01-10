@@ -24,6 +24,7 @@ const {user} = useContext(AuthContext)
             difficulty,
             task_assignee_email:email,
             image,
+            submitted_Assignment:pdfFile,
             marks,
             task_assignee_name:taskAssignee,
             title,

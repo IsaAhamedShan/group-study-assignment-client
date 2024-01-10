@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import AssignmentDetails from "../../pages/AssignmentDetails";
-
+import React, { useState } from "react";
+import AssignmentCard from "./AssignmentCard";
+import { motion } from "framer-motion";
 const AssignmentCompleteList = () => {
   const [idForDetails, setIdForDetails] = useState(null);
+  const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
+  const [assignmentComplete, setAssignmentComplete] = useState(true);
   const getAssignmentCompleteList = async () => {
     try {
       const response = await axios.get(
@@ -16,6 +18,18 @@ const AssignmentCompleteList = () => {
       throw error;
     }
   };
+  // useEffect(()=>{
+  //   if(item?.difficulty === 'easy'){
+  //     setDifficultyColor('bg-green-400')
+  //   }
+  //   else if(item?.difficulty==='medium'){
+  //     setDifficultyColor('bg-yellow-400')
+  //   }
+  //   else if(item?.difficulty==='hard'){
+  //     setDifficultyColor('bg-red-400')
+  //   }
+
+  // },[])
 
   const assignmentCompleteListMutation = useQuery({
     queryKey: ["assignmentCompleteList"],
@@ -40,46 +54,29 @@ const AssignmentCompleteList = () => {
   }
 
   return (
-    <div>
+    <div className="flex justify-center gap-4 flex-wrap ">
       {assignmentCompleteListMutation.data.map(item => (
-        <div key={item._id} className="border border-grey-600 p-4 my-2">
-          <div>
-            {item.image && (
-              <img src={item.image} alt="MongoDB Image" className="w-24 h-24" />
-            )}
-          </div>
-          <p>{item.title}</p>
-          <p>{item.dueDate}</p>
-
-          {/* <Link to={`/assignmentDetails/${item._id}`}>
-          <button className="btn-outline">Details</button>
-        </Link> */}
-
-          <button
-            className="btn btn-outline"
-            onClick={ () => {
-              setTimeout(() => {
-                setIdForDetails(item._id);
-
-                document.getElementById("acl").showModal();
-              }, 1);
-            }}
-          >
-            details
-          </button>
-
-          <dialog id="acl" className="modal">
-            <div className="modal-box">
-              <AssignmentDetails id={idForDetails}></AssignmentDetails>
-
-              <div className="modal-action">
-                <form method="dialog">
-                  <button className="btn">Close</button>
-                </form>
-              </div>
-            </div>
-          </dialog>
-        </div>
+        <motion.div
+          key={item._id}
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              duration: 1,
+            },
+          }}
+          viewport={{ once: true }}
+        >
+          <AssignmentCard
+            item={item}
+            idForDetails={idForDetails}
+            setIdForDetails={setIdForDetails}
+            assignmentComplete={assignmentComplete}
+          ></AssignmentCard>
+        </motion.div>
       ))}
     </div>
   );

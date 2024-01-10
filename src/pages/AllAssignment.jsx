@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { motion } from "framer-motion";
 
-import AssignmentDetails from "./AssignmentDetails";
+import AssignmentCard from "../components/Assignment/AssignmentCard";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 const AllAssignment = () => {
@@ -48,61 +49,34 @@ const AllAssignment = () => {
 
   return (
     <div className="flex justify-between items-center">
-      <div className="flex gap-4">
+      <motion.div
+        className="flex gap-4 flex-wrap justify-center items-center"
+        // variants={assignmentCardVariant}
+       
+      >
         {allAssignmentsMutation.data.map(item => (
-          <div key={item._id} className="border border-grey-600 p-4 my-2">
-            <div>
-              {item.image && (
-                <img
-                  src={item.image}
-                  alt="MongoDB Image"
-                  className="w-24 h-24"
-                />
-              )}
-            </div>
-            <p>{item.title}</p>
-            <p>{item.dueDate}</p>
-            {user?.email === item?.email ? (
-              <button
-                onClick={() => {
-                  handleDeleteAssignment(item._id);
-                }}
-              >
-                delete
-              </button>
-            ) : null}
-
-            {/* <Link to={`/assignmentDetails/${item._id}`}>
-              <button className="btn-outline">Details</button>
-            </Link> */}
-
-            <button
-              className="btn btn-outline"
-              onClick={() => {
-                
-                setTimeout(() => {
-                  setIdForDetails(item._id);
-                  document.getElementById("my_modal_1").showModal();
-                }, 1);
-              }}
-            >
-              details
-            </button>
-
-            <dialog id="my_modal_1" className="modal">
-              <div className="modal-box">
-                <AssignmentDetails id={idForDetails}></AssignmentDetails>
-
-                <div className="modal-action">
-                  <form method="dialog">
-                    <button className="btn">Close</button>
-                  </form>
-                </div>
-              </div>
-            </dialog>
-          </div>
+          <motion.div key={item._id}
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              duration: 1 
+            }
+          }}
+          viewport={{ once: true }}
+          >
+            <AssignmentCard
+              item={item}
+              idForDetails={idForDetails}
+              handleDeleteAssignment={handleDeleteAssignment}
+              setIdForDetails={setIdForDetails}
+            ></AssignmentCard>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

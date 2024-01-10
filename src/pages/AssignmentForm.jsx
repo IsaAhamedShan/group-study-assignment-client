@@ -88,7 +88,7 @@ const AssignmentForm = () => {
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: "image/*",
+    accept: "image/*, .svg, .ico",
     onDrop,
   });
   const handleSubmit = async e => {
@@ -116,7 +116,7 @@ const AssignmentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8">
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8 px-4 md:px-0">
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-4">
         <label

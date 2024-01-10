@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 
 const Header = () => {
     return (
-        <div>
+        <div className="w-full z-10 sticky top-0">
            <Navbar></Navbar>
         </div>
     );

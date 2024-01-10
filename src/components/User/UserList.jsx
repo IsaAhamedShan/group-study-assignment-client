@@ -7,7 +7,7 @@ const UserList = () => {
     queryFn: async () => {
       try {
         const response = await axios.get("http://localhost:5000/allUsersList");
-        // console.log(response.data);
+        console.log(response.data);
         return response.data;
       } catch (error) {
         console.error(error);
@@ -42,7 +42,7 @@ const UserList = () => {
                   <th className="text-base">Name</th>
                 </label>
               </th>
-              <th className="text-base">Email</th>
+              <th className="text-base hidden md:block">Email</th>
               <th></th>
             </tr>
           </thead>
@@ -64,14 +64,14 @@ const UserList = () => {
                     </div>
                   </div>
                 </td>
-                <td className="text-xl">
+                <td className="text-xl hidden md:block">
                   {item.email}
                   <br />
                 </td>
 
-                <th>
+                {/* <th className="hidden md:block">
                   <button className="btn btn-ghost rounded-sm btn-sm">delete</button>
-                </th>
+                </th> */}
               </tr>))}
               
             </tbody>

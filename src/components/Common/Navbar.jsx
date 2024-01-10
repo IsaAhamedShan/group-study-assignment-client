@@ -5,7 +5,9 @@ import { FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
-  const [theme, setTheme] = useState( localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
 
   const handleTheme = e => {
     const value = e.target.value;
@@ -29,8 +31,12 @@ const Navbar = () => {
   const navList = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" smooth={true} duration={500}>
+          Home
+        </NavLink>
       </li>
+      {/* <section id="section1" className="h-screen bg-blue-500">
+        <h1>Section 1</h1> */}
       <li>
         <NavLink to="/allUsersList">Users</NavLink>
       </li>
@@ -43,14 +49,16 @@ const Navbar = () => {
       </li>
       {user ? (
         <li>
-        <NavLink to="/assignmentForm">Assignment Form</NavLink>
-      </li>):null
-      }
+          <NavLink to="/assignmentForm">Assignment Form</NavLink>
+        </li>
+      ) : null}
       {user ? (
         <li>
-        <NavLink to={`/myLifeTimeSubmission/${user.email}`}>My submission list</NavLink>
-      </li>):null
-      }
+          <NavLink to={`/myLifeTimeSubmission/${user.email}`}>
+            My submission list
+          </NavLink>
+        </li>
+      ) : null}
       {user ? null : (
         <li>
           <NavLink to="/signin">Sign In</NavLink>
@@ -61,10 +69,17 @@ const Navbar = () => {
           <NavLink to="/register">Register</NavLink>
         </li>
       )}
+      {
+        user? (
+          <li>
+            <button onClick={handleLogOut}>Logout</button>
+          </li>
+        ):null
+      }
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 sticky top-0">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -186,9 +201,8 @@ const Navbar = () => {
             ) : (
               <FaUserCircle className="w-12 h-12" />
             )}
-
-            {user?.displayName}
-            <button onClick={handleLogOut}>Logout</button>
+            <div className="hidden  md:block">{user?.displayName}</div>
+            
           </div>
         ) : null}
       </div>

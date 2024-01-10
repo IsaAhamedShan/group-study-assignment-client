@@ -9,3 +9,8 @@ body[data-theme='light'] {
 body[data-theme='dark'] {
     font-family: 'rancho', sans-serif;
   }
+
+  .animateScroll{
+    opacity: 0;
+  }
+  

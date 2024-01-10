@@ -5,13 +5,14 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import ProgressStatisticsPieChart from "../components/PieChart/ProgressStatisticsPieChart";
 import Hero from "../components/Layout/Hero";
+import { Link } from "react-scroll";
+import Footer from "../components/Common/Footer";
+import Features from "../components/Layout/Features";
 const Home = () => {
   const { userCreationTime, userTotalSubmissionCount } =
     useContext(AuthContext);
   console.log("userCreationTime at home is: " + userCreationTime);
-  const [totalDoc, setTotalDoc] = useState(null);
-  const [docAfterCreationTime, setDocBeforeCreationTime] = useState(null);
-  console.log(userTotalSubmissionCount, docAfterCreationTime);
+
   const taskCheckMutation = useMutation({
     mutationFn: async () => {
       axios
@@ -23,43 +24,16 @@ const Home = () => {
       console.log("task check function executed successfully");
     },
   });
-  const progressStatisticsCheck = useMutation({
-    mutationFn: async () => {
-      axios
-        .get(
-          `http://localhost:5000/progressStatisticsCheck/${userCreationTime}`,
-          {
-            userCreationDate: userCreationTime,
-          }
-        )
-        .then(res => {
-          console.log(res);
-          setTotalDoc(parseInt(res.data.totalDocCount));
-          setDocBeforeCreationTime(
-            parseInt(res.data.docCountAfterCreationUser)
-          );
-        })
-        .catch(error => console.log(error));
-    },
-    onSuccess: () => {
-      console.log("progress statistics function executed successfully");
-    },
-  });
+
   useEffect(() => {
     taskCheckMutation.mutateAsync();
-    if (userCreationTime) {
-      progressStatisticsCheck.mutateAsync();
-    }
-  }, [userCreationTime]);
+  }, []);
 
   return (
     <div>
       <Hero></Hero>
-      {/* <h1>home</h1> */}
-      <ProgressStatisticsPieChart
-       userTotalSubmissionCount={userTotalSubmissionCount}
-        docAfterCreationTime={docAfterCreationTime}
-      ></ProgressStatisticsPieChart>
+      <Features></Features>
+      <Footer></Footer>
     </div>
   );
 };

@@ -2,24 +2,25 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 import AssignmentSubmitField from "../components/Assignment/AssignmentSubmitField";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 import { AuthContext } from "../provider/AuthProvider";
 import AssignmentUpdateForm from "../components/Assignment/AssignmentUpdateForm";
 import { Link } from "react-router-dom";
-const AssignmentDetails = ({ id }) => {
+
+const AssignmentDetails = ({ id,assignmentComplete }) => {
   // const {id} = useParams()
-  console.log("id got in assignment details: ",id)
+  console.log("id got in assignment details: ", id);
   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if(id){
+        if (id) {
           const response = await axios.get(
             `http://localhost:5000/assignmentDetails/${id}`
           );
           setData(response.data);
-          console.log("res is: ", response);
+          console.log("assignment details  ", response);
         }
       } catch (error) {
         console.log(error);
@@ -37,15 +38,38 @@ const AssignmentDetails = ({ id }) => {
 
   console.log("id is :", id);
   return (
-    <div>
-      <h1>Task Name: {data.title}</h1>
-      <h2>Task Assignee: {data.taskAssignee}</h2>
-      <h2>Task Difficulty: {data.difficulty}</h2>
+    <div className="flex flex-col gap-3"
+    
+    >
+      <h1>
+        <span className="font-bold">Task Name: </span>
+        {data.title}
+      </h1>
+      <h2>
+        <span className="font-bold">Task Assignee: </span>
+        {data.taskAssignee}
+      </h2>
+      <h2>
+        <span className="font-bold">Task Difficulty: </span>
+        {data.difficulty}
+      </h2>
 
-      <p>Task Description: {data.description}</p>
-      {/* <p>Creation Date: {format(data.creationDate, 'dd MMMM, yyyy')}</p> */}
-      {/* <p>Due Date: { format(data.dueDate, 'dd MMMM, yyyy')}</p> */}
-      <p>Task Status: {data.status}</p>
+      <p>
+        <span className="font-bold">Task Description: </span>
+        {data.description}
+      </p>
+      <p>
+        <span className="font-bold">Creation Date: </span>
+        {data?.creationDate ? format(data.creationDate, "dd MMMM, yyyy") : null}
+      </p>
+      <p>
+        <span className="font-bold">Due Date: </span>
+        {data?.dueDate ? format(data.dueDate, "dd MMMM, yyyy") : null}
+      </p>
+      <p>
+        <span className="font-bold">Task Status: </span>
+        {data.status}
+      </p>
       {data?.status !== "completed" ? (
         <button
           className="btn btn-outline"
@@ -59,43 +83,6 @@ const AssignmentDetails = ({ id }) => {
           <button className="btn btn-outline">Submit list</button>
         </Link>
       ) : null}
-      {/* {data?.email !== user?.email ? (
-        <button
-          className="btn btn-outline"
-          onClick={() => {
-            document.getElementById("give_mark").showModal();
-          }}
-        >
-          Give mark
-        </button>
-      ) : null}
-      <dialog id="give_mark" className="modal">
-        <div className="modal-box">
-          <form onSubmit={{handleMark}}>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">What is your name?</span>
-              <span className="label-text-alt">Top Right label</span>
-            </div>
-            <input
-              type="number"
-              placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <div className="label">
-              <span className="label-text-alt">Bottom Left label</span>
-              <span className="label-text-alt">Bottom Right label</span>
-            </div>
-          </label>
-          </form>
-
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Close</button>
-            </form>
-          </div>
-        </div>
-      </dialog> */}
 
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box">

@@ -68,7 +68,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
-    <div>
+    <div className="max-w-7xl m-auto">
       <AuthProvider>
         <React.StrictMode>
           <RouterProvider router={router} />
