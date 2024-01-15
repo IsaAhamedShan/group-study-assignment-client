@@ -24,7 +24,8 @@ const MyLifeTimeSubmittedList = () => {
     queryKey: ["lifeTimeSubmitedList"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/usersLifeTimeSubmittedList/${id}`
+        `http://localhost:5000/usersLifeTimeSubmittedList/${id}`,
+        { withCredentials: true }
       );
       console.log("res from life time submission  :", response?.data);
       setUserTotalSubmissionCount(response.data.length);
@@ -77,8 +78,7 @@ const MyLifeTimeSubmittedList = () => {
 
   return (
     <div className="">
-      
-      <div className="m-16">
+      <div className="m-16 flex justify-center items-center">
         <ProgressStatisticsPieChart
           userTotalSubmissionCount={userTotalSubmissionCount}
           docAfterCreationTime={docAfterCreationTime}
@@ -103,13 +103,17 @@ const MyLifeTimeSubmittedList = () => {
                 </h2>
                 <h2>
                   <span className="font-bold">Task Difficulty: </span>
-                  <span className={`px-2 rounded-sm ${getDifficultyColor(item.difficulty)}` }>
+                  <span
+                    className={`px-2 rounded-sm ${getDifficultyColor(
+                      item.difficulty
+                    )}`}
+                  >
                     {item.difficulty}
                   </span>
                 </h2>
                 <p>
                   <span className="font-bold">Task Description: </span>
-                  {item.description.split(" ").slice(0,12).join(' ')}...
+                  {item.description.split(" ").slice(0, 12).join(" ")}...
                 </p>
                 <p>
                   <span className="font-bold">Due Date: </span>

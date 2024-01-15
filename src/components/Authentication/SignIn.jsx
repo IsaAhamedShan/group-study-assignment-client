@@ -10,8 +10,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 const SignIn = () => {
+  const location = useLocation();
   const navigate= useNavigate()
   const signInSuccess = () => {
     toast.success("Sign In Success");
@@ -27,7 +28,12 @@ const SignIn = () => {
         .then(res => {
           console.log(res);
           signInSuccess();
-          navigate('/')
+          const user = { email };
+          axios.post("http://localhost:5000/jwt",user,{withCredentials:true})
+          .then(res=>{console.log("cookie created and stored In localStorage successfully.",res)})
+          .catch(error=>{console.log("error creating cookie: ",error)})
+          navigate(location?.state ? location?.state : "/");
+          console.log("loacton is ",location.state)
 
         })
         .catch(error => {
@@ -55,6 +61,7 @@ const SignIn = () => {
           })
           .then(function (response) {
             console.log(response);
+            navigate(location?.state ? location?.state : "/");
           })
           .catch(function (error) {
             console.log(error);

@@ -8,11 +8,13 @@ import Hero from "../components/Layout/Hero";
 import { Link } from "react-scroll";
 import Footer from "../components/Common/Footer";
 import Features from "../components/Layout/Features";
+import AboutUs from "../components/Layout/AboutUs";
+import CardComponent from "../components/Layout/cardComponent";
 const Home = () => {
-  const { userCreationTime, userTotalSubmissionCount } =
+  const { userCreationTime, userTotalSubmissionCount,user } =
     useContext(AuthContext);
-  console.log("userCreationTime at home is: " + userCreationTime);
-
+  // console.log("userCreationTime at home is: " + userCreationTime);
+// console.log("user at home is ", user)
   const taskCheckMutation = useMutation({
     mutationFn: async () => {
       axios
@@ -32,6 +34,7 @@ const Home = () => {
   return (
     <div>
       <Hero></Hero>
+      <CardComponent></CardComponent>
       <Features></Features>
       <Footer></Footer>
     </div>

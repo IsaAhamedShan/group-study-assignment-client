@@ -15,6 +15,7 @@ import AssignmentDetails from "./pages/AssignmentDetails.jsx";
 import AssignmentCompleteList from "./components/Assignment/AssignmentCompleteList.jsx";
 import SubmittedAssignment from "../src/pages/SubmittedAssignments.jsx"
 import MyLifeTimeSubmittedList from "./components/Assignment/MyLifeTimeSubmittedList.jsx";
+import Private from "./private/Private.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -35,7 +36,9 @@ const router = createBrowserRouter([
       },
       {
         path:"/allUsersList",
-        element:<UserList></UserList>
+        element:<Private>
+          <UserList></UserList>
+        </Private>
       },
       {
         path:"/assignmentForm",
@@ -43,23 +46,33 @@ const router = createBrowserRouter([
       },
       {
         path:"/allAssignment",
-        element:<AllAssignment></AllAssignment>
+        element:<Private>
+          <AllAssignment></AllAssignment>
+        </Private>
       },
       {
         path:"/assignmentDetails/:id",
-        element:<AssignmentDetails></AssignmentDetails>
+        element:<Private>
+          <AssignmentDetails></AssignmentDetails>
+        </Private>
       },
       {
         path:"/assignmentCompleteList",
-        element:<AssignmentCompleteList></AssignmentCompleteList>
+        element:<Private>
+          <AssignmentCompleteList></AssignmentCompleteList>
+        </Private>
       },
       {
         path:"/submittedAssignment/:id",
-        element:<SubmittedAssignment></SubmittedAssignment>
+        element:<Private>
+          <SubmittedAssignment></SubmittedAssignment>
+        </Private>
       },
       {
         path:"/myLifeTimeSubmission/:id",
-        element:<MyLifeTimeSubmittedList></MyLifeTimeSubmittedList>
+        element:<Private>
+          <MyLifeTimeSubmittedList></MyLifeTimeSubmittedList>
+        </Private>
       }
 
     ],

@@ -1,16 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;1,300;1,400&family=Rancho&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;1,300;1,400&family=Rancho&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body[data-theme='light'] {
-    font-family: 'rancho', sans-serif;
-  }
-body[data-theme='dark'] {
-    font-family: 'rancho', sans-serif;
-  }
+body[data-theme="light"] {
+  font-family: "rancho", sans-serif;
+}
+body[data-theme="dark"] {
+  font-family: "rancho", sans-serif;
+}
 
-  .animateScroll{
-    opacity: 0;
-  }
-  
+.animateScroll {
+  opacity: 0;
+}
+.flip.card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  -webkit-transition: transform 0.6s;
+  -moz-transition: transform 0.6s;
+  -ms-transition: transform 0.6s;
+  -o-transition: transform 0.6s;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-card-back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}

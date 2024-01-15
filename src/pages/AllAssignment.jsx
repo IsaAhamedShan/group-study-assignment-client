@@ -48,7 +48,7 @@ const AllAssignment = () => {
   }
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center md:my-14">
       <motion.div
         className="flex gap-4 flex-wrap justify-center items-center"
         // variants={assignmentCardVariant}

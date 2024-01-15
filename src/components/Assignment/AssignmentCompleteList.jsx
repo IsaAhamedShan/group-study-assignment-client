@@ -54,7 +54,7 @@ const AssignmentCompleteList = () => {
   }
 
   return (
-    <div className="flex justify-center gap-4 flex-wrap ">
+    <div className="flex justify-center gap-4 flex-wrap py-14">
       {assignmentCompleteListMutation.data.map(item => (
         <motion.div
           key={item._id}

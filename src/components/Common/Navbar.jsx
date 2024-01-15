@@ -37,16 +37,23 @@ const Navbar = () => {
       </li>
       {/* <section id="section1" className="h-screen bg-blue-500">
         <h1>Section 1</h1> */}
-      <li>
-        <NavLink to="/allUsersList">Users</NavLink>
-      </li>
+      {user ? (
+        <li>
+          <NavLink to="/allUsersList">Users</NavLink>
+        </li>
+      ) : null}
+
       <li>
         <NavLink to="/allAssignment">Assignment List</NavLink>
       </li>
+      {user ? (
+        <li>
+          <NavLink to="assignmentCompleteList">
+            Assignment Complete List
+          </NavLink>
+        </li>
+      ) : null}
 
-      <li>
-        <NavLink to="assignmentCompleteList">Assignment Complete List</NavLink>
-      </li>
       {user ? (
         <li>
           <NavLink to="/assignmentForm">Assignment Form</NavLink>
@@ -69,13 +76,11 @@ const Navbar = () => {
           <NavLink to="/register">Register</NavLink>
         </li>
       )}
-      {
-        user? (
-          <li>
-            <button onClick={handleLogOut}>Logout</button>
-          </li>
-        ):null
-      }
+      {user ? (
+        <li>
+          <button onClick={handleLogOut}>Logout</button>
+        </li>
+      ) : null}
     </>
   );
   return (
@@ -202,7 +207,6 @@ const Navbar = () => {
               <FaUserCircle className="w-12 h-12" />
             )}
             <div className="hidden  md:block">{user?.displayName}</div>
-            
           </div>
         ) : null}
       </div>
