@@ -1,11 +1,11 @@
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import toast, { Toaster } from "react-hot-toast";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
-import { updateProfile } from "firebase/auth";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { updateProfile } from "firebase/auth";
+import { useContext, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { register, user, auth, logOut } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const unsuccessfulRegistration = ()=>{toast.error("Registration unsuccessful!")}
           updateProfile(auth.currentUser, {
             displayName: username,
           });
-          axios.post('http://localhost:5000/users',{
+          axios.post('/users',{
             username: username,
             email: email,
             image: auth.currentUser.photoURL? auth.currentUser.photoURL : null

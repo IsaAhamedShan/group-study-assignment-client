@@ -3,6 +3,7 @@ import { useCallback, useContext, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const AssignmentSubmitField = ({assignmentDetails}) =>{
   const {_id,description,difficulty,dueDate,email,image,marks,taskAssignee,title} = assignmentDetails;
 const {user} = useContext(AuthContext)
@@ -12,11 +13,12 @@ const {user} = useContext(AuthContext)
     console.log('assignmentDetails: ', assignmentDetails)
     const [pdfFile, setPdfFile] = useState(null);
     const alreadySubmittedAssignment = ()=>{toast.error("Assignment already submitted")}
+    const axiosSecure = useAxiosSecure()
     const successSubmit = ()=>{toast.success("Assignment Submit Success!")}
     const handleSubmit=()=>{
       const gettingMark = 0
       const count = 0
-        axios.post('http://localhost:5000/allAssignmentSubmitList',{
+      axiosSecure.post('/allAssignmentSubmitList',{
             name: user.displayName,
             email:user.email,
             assignment_id:_id,

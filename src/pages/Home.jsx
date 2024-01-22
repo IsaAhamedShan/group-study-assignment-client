@@ -10,15 +10,25 @@ import Footer from "../components/Common/Footer";
 import Features from "../components/Layout/Features";
 import AboutUs from "../components/Layout/AboutUs";
 import CardComponent from "../components/Layout/cardComponent";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import {
+  Link as scrollLink,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scroller,
+} from "react-scroll";
+import ContactUs from "../components/Common/ContactUs";
 const Home = () => {
-  const { userCreationTime, userTotalSubmissionCount,user } =
+  const { userCreationTime, userTotalSubmissionCount, user } =
     useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   // console.log("userCreationTime at home is: " + userCreationTime);
-// console.log("user at home is ", user)
+  // console.log("user at home is ", user)
   const taskCheckMutation = useMutation({
     mutationFn: async () => {
-      axios
-        .patch("http://localhost:5000/allAssignmentsCheck")
+      axiosSecure
+        .patch("/allAssignmentsCheck")
         .then(res => console.log(res))
         .catch(error => console.log(error));
     },
@@ -33,10 +43,25 @@ const Home = () => {
 
   return (
     <div>
-      <Hero></Hero>
-      <CardComponent></CardComponent>
-      <Features></Features>
-      <Footer></Footer>
+      <div>
+      <Element name="Hero">
+        <Hero></Hero>
+      </Element>
+      <Element name="CardComponent">
+        <CardComponent></CardComponent>
+      </Element>
+      <Element name="Features">
+        <Features></Features>
+      </Element>
+    <Element>
+      <ContactUs>
+        
+      </ContactUs>
+    </Element>
+      <Element name="Footer">
+        <Footer></Footer>
+      </Element>
+    </div>
     </div>
   );
 };

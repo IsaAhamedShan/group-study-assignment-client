@@ -1,16 +1,17 @@
-import {
-  FaEye,
-  FaEyeSlash,
-  FaFacebook,
-  FaGithub,
-  FaGoogle,
-} from "react-icons/fa";
-import toast, { Toaster } from "react-hot-toast";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useLocation, useNavigate, useNavigation } from "react-router-dom";
+import { useContext, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import {
+    FaEye,
+    FaEyeSlash,
+    FaFacebook,
+    FaGithub,
+    FaGoogle,
+} from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const SignIn = () => {
   const location = useLocation();
   const navigate= useNavigate()
@@ -20,6 +21,7 @@ const SignIn = () => {
   const signInUnsuccess = () => {
     toast.error("Sign In Unsuccess");
   };
+  const axiosSecure = useAxiosSecure()
   const [showPass, setShowPass] = useState(false);
   const { logIn, googleSignIn, auth } = useContext(AuthContext);
   const signInMutation = useMutation({
@@ -29,7 +31,7 @@ const SignIn = () => {
           console.log(res);
           signInSuccess();
           const user = { email };
-          axios.post("http://localhost:5000/jwt",user,{withCredentials:true})
+          axiosSecure.post("/jwt",user)
           .then(res=>{console.log("cookie created and stored In localStorage successfully.",res)})
           .catch(error=>{console.log("error creating cookie: ",error)})
           navigate(location?.state ? location?.state : "/");
@@ -53,8 +55,8 @@ const SignIn = () => {
     googleSignIn()
       .then(res => {
         console.log(res);
-        axios
-          .post("http://localhost:5000/users", {
+        axiosSecure
+          .post("/users", {
             username: auth.currentUser.displayName,
             email: auth.currentUser.email,
             image: auth.currentUser.photoURL ? auth.currentUser.photoURL : null,

@@ -2,15 +2,17 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const UserList = () => {
   const {user} = useContext(AuthContext)
+  const axiosSecure = useAxiosSecure()
   const query = useQuery({
     queryKey: ["allUsersList"],
     queryFn: async () => {
       try {
-        const url = `http://localhost:5000/allUsersList`
-        const response = await axios.get(url);
+        const url = `/allUsersList`
+        const response = await axiosSecure.get(url);
         console.log(response.data);
         return response.data;
       } catch (error) {

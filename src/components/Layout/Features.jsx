@@ -3,9 +3,11 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const Features = () => {
   // console.log('index: ' + index);
   // console.log('item: ' + item);
+  const axiosSecure = useAxiosSecure()
   const featuresMutation = useMutation({
     mutationFn: async () => {
       try {
@@ -80,7 +82,7 @@ const Features = () => {
           ))}
         </>
       ) : (
-        "xx"
+null
       )}
     </div>
   );

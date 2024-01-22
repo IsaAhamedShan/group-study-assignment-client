@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+
 const Hero = () => {
 
     const imgLink = 'https://i.ibb.co/MSXCGJc/wallpaperflare-com-wallpaper-1.jpg'

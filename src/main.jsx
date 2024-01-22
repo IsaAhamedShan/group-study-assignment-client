@@ -12,7 +12,7 @@ import UserList from "./components/User/UserList.jsx";
 import AssignmentForm from "./pages/AssignmentForm.jsx";
 import AllAssignment from "./pages/AllAssignment.jsx";
 import AssignmentDetails from "./pages/AssignmentDetails.jsx";
-import AssignmentCompleteList from "./components/Assignment/AssignmentCompleteList.jsx";
+import AssignmentCompleteList from "./pages/AssignmentCompleteList.jsx";
 import SubmittedAssignment from "../src/pages/SubmittedAssignments.jsx"
 import MyLifeTimeSubmittedList from "./components/Assignment/MyLifeTimeSubmittedList.jsx";
 import Private from "./private/Private.jsx";

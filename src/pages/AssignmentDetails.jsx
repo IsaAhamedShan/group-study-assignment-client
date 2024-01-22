@@ -1,23 +1,25 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
-import AssignmentSubmitField from "../components/Assignment/AssignmentSubmitField";
 import { format } from "date-fns";
-import { AuthContext } from "../provider/AuthProvider";
-import AssignmentUpdateForm from "../components/Assignment/AssignmentUpdateForm";
 import { Link } from "react-router-dom";
+import AssignmentSubmitField from "../components/Assignment/AssignmentSubmitField";
+import AssignmentUpdateForm from "../components/Assignment/AssignmentUpdateForm";
+import { AuthContext } from "../provider/AuthProvider";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 
 const AssignmentDetails = ({ id,assignmentComplete }) => {
   // const {id} = useParams()
   console.log("id got in assignment details: ", id);
   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (id) {
-          const response = await axios.get(
-            `http://localhost:5000/assignmentDetails/${id}`
+          const response = await axiosSecure.get(
+            `/assignmentDetails/${id}`
           );
           setData(response.data);
           console.log("assignment details  ", response);

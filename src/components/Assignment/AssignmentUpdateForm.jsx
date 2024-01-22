@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useCallback, useContext, useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useDropzone } from "react-dropzone";
 import toast, { Toaster } from "react-hot-toast";
-import { format } from "date-fns";
 import { AuthContext } from "../../provider/AuthProvider";
 const AssignmentUpdateForm = ({ data }) => {
   console.log("updatedetails: ", data);
@@ -51,7 +49,7 @@ const AssignmentUpdateForm = ({ data }) => {
   };
   const handleSubmitMutation = ({ assignmentDetails }) => {
     axios
-      .patch(`http://localhost:5000/assignmentUpdate/${data._id}`, {
+      .patch(`/assignmentUpdate/${data._id}`, {
         title,
         description,
         marks,

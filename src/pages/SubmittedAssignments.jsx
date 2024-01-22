@@ -1,19 +1,21 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import toast, { Toaster } from "react-hot-toast";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 
 const SubmittedAssignments = () => {
   const [marks, setMarks] = useState("");
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [submittedAssignmentInfo, setSubmittedAssignmentInfo] = useState([]);
+  const axiosSecure = useAxiosSecure()
   const getSubmittedAssignments = async id => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/submittedAssignment/${id}`
+      const response = await axiosSecure.get(
+        `/submittedAssignment/${id}`
       );
       console.log("Submitted Assignment ", response);
       return response.data;
@@ -65,7 +67,7 @@ const SubmittedAssignments = () => {
     console.log("marks details: ", marksDetails);
     axios
       .post(
-        "http://localhost:5000/marksDetails",
+        "/marksDetails",
         {
           marks,
           assignment_id: submittedAssignmentInfo.assignment_id,
@@ -82,7 +84,7 @@ const SubmittedAssignments = () => {
         console.log("res is :", res);
 
         axios
-          .patch("http://localhost:5000/markAddToAssignment", {
+          .patch("/markAddToAssignment", {
             assignment_id: submittedAssignmentInfo.assignment_id,
             submitter_email: submittedAssignmentInfo.email,
             marks,

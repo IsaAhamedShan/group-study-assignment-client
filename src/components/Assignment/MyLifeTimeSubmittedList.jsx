@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { format } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import ProgressStatisticsPieChart from "../PieChart/ProgressStatisticsPieChart";
-import { format } from "date-fns";
-import AssignmentCard from "./AssignmentCard";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const MyLifeTimeSubmittedList = () => {
   const { id } = useParams();
   const {
@@ -20,11 +20,12 @@ const MyLifeTimeSubmittedList = () => {
   // const [myTotalSubmission,setMyTotalSubmission] = useState();
   const [totalDoc, setTotalDoc] = useState(null);
   const [docAfterCreationTime, setDocBeforeCreationTime] = useState(null);
+  const axiosSecure = useAxiosSecure()
   const submissionLifeTime = useQuery({
     queryKey: ["lifeTimeSubmitedList"],
     queryFn: async () => {
-      const response = await axios.get(
-        `http://localhost:5000/usersLifeTimeSubmittedList/${id}`,
+      const response = await axiosSecure.get(
+        `/usersLifeTimeSubmittedList/${id}`,
         { withCredentials: true }
       );
       console.log("res from life time submission  :", response?.data);
@@ -40,7 +41,7 @@ const MyLifeTimeSubmittedList = () => {
     mutationFn: async () => {
       axios
         .get(
-          `http://localhost:5000/progressStatisticsCheck/${userCreationTime}`,
+          `/progressStatisticsCheck/${userCreationTime}`,
           {
             userCreationDate: userCreationTime,
           }

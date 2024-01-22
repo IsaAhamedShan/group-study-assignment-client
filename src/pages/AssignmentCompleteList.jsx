@@ -1,17 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useState } from "react";
-import AssignmentCard from "./AssignmentCard";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import AssignmentCard from "../components/Assignment/AssignmentCard";
 const AssignmentCompleteList = () => {
   const [idForDetails, setIdForDetails] = useState(null);
   const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
   const [assignmentComplete, setAssignmentComplete] = useState(true);
+  const axiosSecure = useAxiosSecure()
   const getAssignmentCompleteList = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/allAssignmentCompleteList"
-      );
+      // const response = await axios.get(
+      //   "/allAssignmentCompleteList"
+      // );
+      const response = await axiosSecure.get('/allAssignmentCompleteList')
       return response.data;
     } catch (error) {
       console.log("error", error);

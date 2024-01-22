@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useCallback, useContext, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useDropzone } from "react-dropzone";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../provider/AuthProvider";
-import { format } from "date-fns";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 const AssignmentForm = () => {
   // HOOKS
   const [title, setTitle] = useState("");
@@ -24,6 +23,8 @@ const AssignmentForm = () => {
   const successAssignmentCreation = () => {
     toast.success("Assignment created successfully!");
   };
+
+  const axiosSecure = useAxiosSecure()
   const handleImageLinkGenerate = async droppedImage => {
     const formData = new FormData();
     formData.append("file", droppedImage);
@@ -38,8 +39,8 @@ const AssignmentForm = () => {
     console.log("image url: ", image);
   };
   const handleSubmitMutation = ({ assignmentDetails }) => {
-    axios
-      .post("http://localhost:5000/allAssignments", {
+    axiosSecure
+      .post("/allAssignments", {
         title,
         description,
         marks,
