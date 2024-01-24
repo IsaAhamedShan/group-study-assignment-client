@@ -9,7 +9,7 @@ const Private = ({ children }) => {
   if (user?.email) {
     return children;
   } else {
-    return <Navigate state={location.pathname} to="/signin" replace></Navigate>;
+    return <Navigate state={location.pathname} to={location?.pathname? location.pathname : '/signin'} replace></Navigate>;
   }
 };
 

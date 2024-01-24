@@ -1,8 +1,8 @@
+import format from "date-fns/format";
+import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
 import AssignmentDetails from "../../pages/AssignmentDetails";
 import { AuthContext } from "../../provider/AuthProvider";
-import format from "date-fns/format";
-import { motion } from "framer-motion"
 // import AssignmentDetails from "../";
 const AssignmentCard = ({
   item,
@@ -29,7 +29,7 @@ const AssignmentCard = ({
     >
       <motion.div
         key={item._id}
-        className="border border-base-500 rounded-md p-6 my-2 w-96 h-80 flex flex-col justify-between hover:scale-105 duration-200 hover:shadow-md hover:shadow-base-500"
+        className="border border-base-500 rounded-md p-6 my-2 w-[360px] h-80 flex flex-col justify-between hover:scale-105 duration-200 hover:shadow-md hover:shadow-base-500 " 
       >
         <div className="flex justify-between">
           {item.image && (

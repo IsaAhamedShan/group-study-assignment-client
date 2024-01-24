@@ -14,12 +14,11 @@ const MyLifeTimeSubmittedList = () => {
     user,
     userCreationTime,
   } = useContext(AuthContext);
-  const [idForDetails, setIdForDetails] = useState(null);
+  const [idForDetails, setIdForDetails] = useState('');
   const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
-  const [assignmentComplete, setAssignmentComplete] = useState(true);
-  // const [myTotalSubmission,setMyTotalSubmission] = useState();
-  const [totalDoc, setTotalDoc] = useState(null);
-  const [docAfterCreationTime, setDocBeforeCreationTime] = useState(null);
+  // const [assignmentComplete, setAssignmentComplete] = useState(true);
+  const [totalDoc, setTotalDoc] = useState('');
+  const [docAfterCreationTime, setDocBeforeCreationTime] = useState('');
   const axiosSecure = useAxiosSecure()
   const submissionLifeTime = useQuery({
     queryKey: ["lifeTimeSubmitedList"],
@@ -129,7 +128,7 @@ const MyLifeTimeSubmittedList = () => {
                 </p>
               </div>
             ))
-          : null}
+          : ''}
       </div>
     </div>
   );

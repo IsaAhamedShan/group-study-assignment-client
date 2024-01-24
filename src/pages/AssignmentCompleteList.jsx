@@ -4,7 +4,7 @@ import { useState } from "react";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 import AssignmentCard from "../components/Assignment/AssignmentCard";
 const AssignmentCompleteList = () => {
-  const [idForDetails, setIdForDetails] = useState(null);
+  const [idForDetails, setIdForDetails] = useState('');
   const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
   const [assignmentComplete, setAssignmentComplete] = useState(true);
   const axiosSecure = useAxiosSecure()

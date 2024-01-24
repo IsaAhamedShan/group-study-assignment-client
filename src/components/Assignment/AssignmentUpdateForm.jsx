@@ -10,12 +10,12 @@ const AssignmentUpdateForm = ({ data }) => {
   console.log("updatedetails: ", data);
   // const {title,description,marks,difficulty,dueDate,creationDate,image,title} = updateDetails
   // HOOKS
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState("");
   const [marks, setMarks] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
   const [dueDate, setDueDate] = useState(new Date());
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const { user } = useContext(AuthContext);
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";

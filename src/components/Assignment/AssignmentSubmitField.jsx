@@ -11,7 +11,7 @@ const {user} = useContext(AuthContext)
     const uploadPreset = "vqe3dxyc";
     // const {title,email,username} = assignmentDetails
     console.log('assignmentDetails: ', assignmentDetails)
-    const [pdfFile, setPdfFile] = useState(null);
+    const [pdfFile, setPdfFile] = useState('');
     const alreadySubmittedAssignment = ()=>{toast.error("Assignment already submitted")}
     const axiosSecure = useAxiosSecure()
     const successSubmit = ()=>{toast.success("Assignment Submit Success!")}

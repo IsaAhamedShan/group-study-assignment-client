@@ -53,9 +53,8 @@ const Home = () => {
       <Element name="Features">
         <Features></Features>
       </Element>
-    <Element>
+    <Element name="ContactUs">
       <ContactUs>
-        
       </ContactUs>
     </Element>
       <Element name="Footer">

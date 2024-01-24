@@ -9,16 +9,16 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { auth, app } from "../firebase/firebase.config.js";
+import { auth} from "../firebase/firebase.config.js";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [userTotalSubmissionCount, setUserTotalSubmissionCount] = useState(null)
-  const [userCreationTime,setUserCreationTime] = useState(null);
+  const [user, setUser] = useState('');
+  const [userTotalSubmissionCount, setUserTotalSubmissionCount] =
+    useState('');
+  const [userCreationTime, setUserCreationTime] = useState('');
   const register = (email, password) => {
-    // console.log('inside register function')
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const googleProvider = new GoogleAuthProvider();
@@ -34,15 +34,24 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
-      setUserCreationTime(currentUser.metadata.createdAt)
-      // console.log(currentUser);
+      setUserCreationTime(currentUser.metadata.createdAt);
     });
     return () => {
       unSubscribe();
     };
   });
 
-  const authInfo = { user,auth,register, googleSignIn, logOut, logIn,userCreationTime,userTotalSubmissionCount, setUserTotalSubmissionCount };
+  const authInfo = {
+    user,
+    auth,
+    register,
+    googleSignIn,
+    logOut,
+    logIn,
+    userCreationTime,
+    userTotalSubmissionCount,
+    setUserTotalSubmissionCount,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

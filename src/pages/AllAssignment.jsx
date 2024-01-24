@@ -9,7 +9,7 @@ import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 const AllAssignment = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const [idForDetails, setIdForDetails] = useState(null);
+  const [idForDetails, setIdForDetails] = useState('');
   const handleDeleteAssignment = id => {
     axiosSecure
       .delete(`/assignmentDelete/${id}`)

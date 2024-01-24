@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {
     FaEye,
@@ -24,6 +24,9 @@ const SignIn = () => {
   const axiosSecure = useAxiosSecure()
   const [showPass, setShowPass] = useState(false);
   const { logIn, googleSignIn, auth } = useContext(AuthContext);
+  // useEffect(()=>{
+  //   navigate(location?.state ? location?.state : null)
+  // },[])
   const signInMutation = useMutation({
     mutationFn: ({ email, password }) => {
       logIn(email, password)
@@ -44,6 +47,7 @@ const SignIn = () => {
         });
     },
   });
+
   const handleSignIn = async e => {
     e.preventDefault();
     const form = e.target;

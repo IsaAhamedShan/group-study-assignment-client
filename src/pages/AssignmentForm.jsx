@@ -15,7 +15,7 @@ const AssignmentForm = () => {
   const [difficulty, setDifficulty] = useState("easy");
   const [dueDate, setDueDate] = useState(new Date());
   const [creationDate, setCreationDate] = useState(new Date());
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const { user } = useContext(AuthContext);
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";

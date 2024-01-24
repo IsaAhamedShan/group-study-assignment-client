@@ -14,7 +14,7 @@ const CardComponent = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center h-[800px] w-[100vw] md:w-full cursor-pointer" style={{backgroundImage: `url(${aboutusmain})`,backgroundSize:"cover", backgroundPosition:'center', backgroundRepeat:"no-repeat"}}>
+    <div className="flex items-center justify-center h-[400px] md:h-[600px] lg:h-[800px] w-[100vw] md:w-full cursor-pointer" style={{backgroundImage: `url(${aboutusmain})`,backgroundSize:"cover", backgroundPosition:'center', backgroundRepeat:"no-repeat"}}>
       <div className="flip-card px-4 lg:px-0 w-[78.28%] h-[80.25%]" onClick={handleClick}>
         <motion.div
           className="flip-card-inner w-full h-full"
@@ -28,7 +28,7 @@ const CardComponent = () => {
         >
           <div className="flip-card-front w-full h-full " style={{backgroundImage: `url(${aboutussub})`,backgroundSize:"cover", backgroundPosition:'center', backgroundRepeat:"no-repeat"}}>
           </div>
-          <div className="flip-card-back w-full h-full bg-base-100">
+          <div className="flip-card-back w-full h-full bg-base-100 ">
             <AboutUs></AboutUs>
           </div>
         </motion.div>
