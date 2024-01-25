@@ -13,7 +13,7 @@ const UserList = () => {
       try {
         const url = `/allUsersList`
         const response = await axiosSecure.get(url);
-        console.log(response.data);
+        console.log("users: ",response.data);
         return response.data;
       } catch (error) {
         console.error(error);

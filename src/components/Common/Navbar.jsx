@@ -56,7 +56,7 @@ const Navbar = () => {
 
       {user ? (
         <li>
-          <NavLink to="/assignmentForm">Assignment Form</NavLink>
+          <NavLink to="/assignmentForm">Create Assignment</NavLink>
         </li>
       ) : null}
       {user ? (

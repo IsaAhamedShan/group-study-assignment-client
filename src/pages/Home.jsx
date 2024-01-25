@@ -36,10 +36,13 @@ const Home = () => {
       console.log("task check function executed successfully");
     },
   });
-
   useEffect(() => {
     taskCheckMutation.mutateAsync();
   }, []);
+// if(taskCheckMutation.isLoading){
+//   return <h1 className="text-5xl">Loading</h1>
+// }
+  
 
   return (
     <div>
@@ -47,11 +50,11 @@ const Home = () => {
       <Element name="Hero">
         <Hero></Hero>
       </Element>
-      <Element name="CardComponent">
-        <CardComponent></CardComponent>
-      </Element>
       <Element name="Features">
         <Features></Features>
+      </Element>
+      <Element name="CardComponent">
+        <CardComponent></CardComponent>
       </Element>
     <Element name="ContactUs">
       <ContactUs>

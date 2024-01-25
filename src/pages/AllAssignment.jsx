@@ -1,23 +1,44 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
-
+import Swal from "sweetalert2";
 import AssignmentCard from "../components/Assignment/AssignmentCard";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import "sweetalert2/dist/sweetalert2.min.css";
+
 const AllAssignment = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const [idForDetails, setIdForDetails] = useState('');
+  const [idForDetails, setIdForDetails] = useState("");
   const handleDeleteAssignment = id => {
-    axiosSecure
-      .delete(`/assignmentDelete/${id}`)
-      .then(res => {
-        console.log("delete res: ", res);
-        allAssignmentsMutation.refetch();
-      })
-      .catch(error => console.log("error while deleting: ", error));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0075ce",
+      cancelButtonColor: "#bb1515",
+      background: "#181616",
+      confirmButtonText: "Yes, delete it!",
+    }).then(result => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/assignmentDelete/${id}`)
+          .then(res => {
+            console.log("delete res: ", res);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+              color: "#f8f5f5",
+            });
+            allAssignmentsMutation.refetch();
+          })
+          .catch(error => console.log("error while deleting: ", error));
+      }
+    });
   };
   const showAllAssignments = async () => {
     try {

@@ -10,9 +10,7 @@ const AssignmentCompleteList = () => {
   const axiosSecure = useAxiosSecure()
   const getAssignmentCompleteList = async () => {
     try {
-      // const response = await axios.get(
-      //   "/allAssignmentCompleteList"
-      // );
+
       const response = await axiosSecure.get('/allAssignmentCompleteList')
       return response.data;
     } catch (error) {

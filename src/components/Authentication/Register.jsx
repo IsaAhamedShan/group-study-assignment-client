@@ -6,29 +6,32 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { register, user, auth, logOut } = useContext(AuthContext);
   const navigate = useNavigate()
 const successRegistration = ()=>{toast.success("Registration success!")}
 const unsuccessfulRegistration = ()=>{toast.error("Registration unsuccessful!")}
+const axiosSecure = useAxiosSecure()
   const registrationMutation = useMutation({
     mutationFn: async ({ username, email, password }) => {
+      console.log('add user details inside mutationFn is: ', username, email, password)
       await register(email, password)
         .then(res => {
           console.log("user:", user);
           updateProfile(auth.currentUser, {
             displayName: username,
           });
-          axios.post('/users',{
+          axiosSecure.post('/users',{
             username: username,
             email: email,
             image: auth.currentUser.photoURL? auth.currentUser.photoURL : null
           })
-          .then(function (response) {
-            console.log(response);
+          .then(response=> {
+            console.log("added: ",response);
           })
-          .catch(function (error) {
+          .catch(error=> {
             console.log(error);
           });
           console.log(res);

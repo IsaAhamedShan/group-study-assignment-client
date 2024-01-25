@@ -79,6 +79,7 @@ const {user} = useContext(AuthContext)
     const handlePdfRemove=()=>{
         setPdfFile(null)
     }
+    const assignmentSubmitThumbnail = 'https://i.ibb.co/P6C983Q/submitted-Assignment-Thumbnail.png'
     return (
       <div>
         <Toaster position="top-right" reverseOrder={false} />
@@ -101,14 +102,15 @@ const {user} = useContext(AuthContext)
         pdfFile ? <div>
             <iframe
               title="PDF Preview"
-              src={pdfFile}
-              width="100%"
-              height="100px"
+              src={assignmentSubmitThumbnail}
+              width=""
+              height="72.5px"
               sandbox="allow-same-origin allow-scripts" //this attributes helps to prevent auto download
             ></iframe>
-            <button onClick={handlePdfRemove}>remove the pdf</button>
-            <div>
-                <button className="btn btn-outline" onClick={handleSubmit}>Submit pdf</button>
+            
+            <div className="flex gap-2 mt-4">
+                <button className="btn btn-outline" onClick={handleSubmit}>Submit</button>
+                <button className="btn btn-outline" onClick={handlePdfRemove}>Remove</button>
             </div>
 
             </div> : null }

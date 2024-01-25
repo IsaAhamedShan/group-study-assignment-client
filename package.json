@@ -15,6 +15,8 @@
     "@mui/icons-material": "^5.15.2",
     "@mui/material": "^5.15.2",
     "@mui/styled-engine-sc": "^6.0.0-alpha.10",
+    "@sweetalert2/theme-borderless": "^5.0.16",
+    "@sweetalert2/theme-dark": "^5.0.16",
     "@tanstack/react-query": "^5.15.3",
     "aos": "^2.3.4",
     "axios": "^1.6.3",
@@ -37,7 +39,8 @@
     "recharts": "^2.10.3",
     "scrollreveal": "^4.0.9",
     "sort-by": "^1.2.0",
-    "styled-components": "^6.1.6"
+    "styled-components": "^6.1.6",
+    "sweetalert2": "^11.10.4"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.14.6",

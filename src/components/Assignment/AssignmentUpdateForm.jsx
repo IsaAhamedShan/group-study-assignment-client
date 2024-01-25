@@ -6,9 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDropzone } from "react-dropzone";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from '../Hooks/useAxiosSecure.jsx'
 const AssignmentUpdateForm = ({ data }) => {
   console.log("updatedetails: ", data);
   // const {title,description,marks,difficulty,dueDate,creationDate,image,title} = updateDetails
+  const axiosSecure = useAxiosSecure()
   // HOOKS
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState("");
@@ -19,7 +21,7 @@ const AssignmentUpdateForm = ({ data }) => {
   const { user } = useContext(AuthContext);
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";
-
+  
   useEffect(() => {
     if (data) {
       setTitle(data.title || "");
@@ -27,6 +29,7 @@ const AssignmentUpdateForm = ({ data }) => {
       setMarks(data.marks || "");
       setDifficulty(data.difficulty || "");
       setImage(data.image || "");
+      // setDueDate(new Date(data.dueDate).toLocaleDateString('en-US'));
     }
   }, [data]);
 
@@ -48,7 +51,7 @@ const AssignmentUpdateForm = ({ data }) => {
     console.log("image url: ", image);
   };
   const handleSubmitMutation = ({ assignmentDetails }) => {
-    axios
+    axiosSecure
       .patch(`/assignmentUpdate/${data._id}`, {
         title,
         description,
@@ -177,20 +180,6 @@ const AssignmentUpdateForm = ({ data }) => {
           className="mt-1 p-2 w-full border rounded-md text-grey-600"
         />
       </div>
-
-      {/* <div className="mb-4">
-        <label htmlFor="thumbnailUrl" className="block text-sm font-medium text-base-600">
-          Thumbnail Image URL
-        </label>
-        <input
-          type="text"
-          id="thumbnailUrl"
-          name="thumbnailUrl"
-          value={thumbnailUrl}
-          onChange={(e) => setThumbnailUrl(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
-        />
-      </div>  */}
 
       <div className="mb-4">
         <label
