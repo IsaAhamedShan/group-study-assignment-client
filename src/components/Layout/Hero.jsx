@@ -9,7 +9,7 @@ const Hero = () => {
   };
   const { user } = useContext(AuthContext);
   return (
-    <div className="hero lg:min-h-[95vh] snap-center" style={backgroundStyle}>
+    <div className="hero min-h-[40vh] md:min-h-[50vh] lg:min-h-[50vh] snap-center" style={backgroundStyle}>
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">

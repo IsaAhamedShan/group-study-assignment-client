@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import { FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
@@ -37,28 +37,31 @@ const Navbar = () => {
       </li>
       {/* <section id="section1" className="h-screen bg-blue-500">
         <h1>Section 1</h1> */}
-      {user ? (
+      {/* {user ? (
         <li>
           <NavLink to="/allUsersList">Users</NavLink>
         </li>
-      ) : null}
+      ) : null} */}
 
-      <li>
-        <NavLink to="/allAssignment">Assignment List</NavLink>
-      </li>
-      {user ? (
+      {/* {user ? (
+        <li>
+          <NavLink to="/allAssignment">Assignment List</NavLink>
+        </li>
+      ) : null} */}
+
+      {/* {user ? (
         <li>
           <NavLink to="assignmentCompleteList">
             Assignment Complete List
           </NavLink>
         </li>
-      ) : null}
+      ) : null} */}
 
-      {user ? (
+      {/* {user ? (
         <li>
           <NavLink to="/assignmentForm">Create Assignment</NavLink>
         </li>
-      ) : null}
+      ) : null} */}
       {user ? (
         <li>
           <NavLink to={`/myLifeTimeSubmission/${user.email}`}>
