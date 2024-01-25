@@ -122,7 +122,7 @@ const AssignmentForm = () => {
       <div className="mb-4">
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-base-600"
+          className="font-roboto block text-sm font-medium text-base-600"
         >
           Title
         </label>
@@ -133,14 +133,14 @@ const AssignmentForm = () => {
           value={title}
           onChange={e => setTitle(e.target.value)}
           required
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="font-roboto mt-1 p-2 w-full border rounded-md text-grey-600"
         />
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-base-600"
+          className="font-roboto block text-sm font-medium text-base-600"
         >
           Description
         </label>
@@ -151,14 +151,14 @@ const AssignmentForm = () => {
           required
           onChange={e => setDescription(e.target.value)}
           rows="3"
-          className="mt-1 p-2 w-full border rounded-md  text-grey-600"
+          className="font-roboto mt-1 p-2 w-full border rounded-md  text-grey-600"
         ></textarea>
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="marks"
-          className="block text-sm font-medium text-base-600"
+          className="font-roboto block text-sm font-medium text-base-600"
         >
           Marks
         </label>
@@ -169,7 +169,7 @@ const AssignmentForm = () => {
           value={marks}
           required
           onChange={e => setMarks(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="font-roboto mt-1 p-2 w-full border rounded-md text-grey-600"
         />
       </div>
 
@@ -190,7 +190,7 @@ const AssignmentForm = () => {
       <div className="mb-4">
         <label
           htmlFor="difficulty"
-          className="block text-sm font-medium text-base-600"
+          className="font-roboto block text-sm font-medium text-base-600"
         >
           Difficulty Level
         </label>
@@ -200,7 +200,7 @@ const AssignmentForm = () => {
           value={difficulty}
           required
           onChange={e => setDifficulty(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="font-roboto mt-1 p-2 w-full border rounded-md text-grey-600"
         >
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
@@ -211,7 +211,7 @@ const AssignmentForm = () => {
       <div className="mb-4">
         <label
           htmlFor="dueDate"
-          className="block text-sm font-medium text-base-600"
+          className="font-roboto block text-sm font-medium text-base-600"
         >
           Due Date
         </label>
@@ -241,7 +241,7 @@ const AssignmentForm = () => {
       <div className="mt-6">
         <button
           type="submit"
-          className="bg-base-500 text-base p-2 rounded-md px-6 btn-outline border"
+          className="font-roboto bg-base-500 text-base p-2 rounded-md px-6 btn-outline border"
         >
           Submit
         </button>

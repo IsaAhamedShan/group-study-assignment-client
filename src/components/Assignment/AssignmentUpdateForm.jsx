@@ -130,7 +130,7 @@ const AssignmentUpdateForm = ({ data }) => {
       <div className="mb-4">
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-base-600"
+          className="block text-sm font-medium text-base-600 font-roboto"
         >
           Title
         </label>
@@ -141,14 +141,14 @@ const AssignmentUpdateForm = ({ data }) => {
           value={title}
           onChange={e => setTitle(e.target.value)}
           required
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="mt-1 p-2 w-full border rounded-md text-grey-600 font-roboto"
         />
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-base-600"
+          className="block text-sm font-medium text-base-600 font-roboto"
         >
           Description
         </label>
@@ -159,14 +159,14 @@ const AssignmentUpdateForm = ({ data }) => {
           required
           onChange={e => setDescription(e.target.value)}
           rows="3"
-          className="mt-1 p-2 w-full border rounded-md  text-grey-600"
+          className="mt-1 p-2 w-full border rounded-md  text-grey-600 font-roboto"
         ></textarea>
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="marks"
-          className="block text-sm font-medium text-base-600"
+          className="block text-sm font-medium text-base-600 font-roboto"
         >
           Marks
         </label>
@@ -177,14 +177,14 @@ const AssignmentUpdateForm = ({ data }) => {
           value={marks}
           required
           onChange={e => setMarks(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="mt-1 p-2 w-full border rounded-md text-grey-600 font-roboto"
         />
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="difficulty"
-          className="block text-sm font-medium text-base-600"
+          className="block text-sm font-medium text-base-600 font-roboto"
         >
           Difficulty Level
         </label>
@@ -194,7 +194,7 @@ const AssignmentUpdateForm = ({ data }) => {
           value={difficulty}
           required
           onChange={e => setDifficulty(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="mt-1 p-2 w-full border rounded-md text-grey-600 font-roboto"
         >
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
@@ -205,7 +205,7 @@ const AssignmentUpdateForm = ({ data }) => {
       <div className="mb-4">
         <label
           htmlFor="dueDate"
-          className="block text-sm font-medium text-base-600"
+          className="block text-sm font-medium text-base-600 font-roboto"
         >
           Due Date
         </label>
@@ -213,10 +213,10 @@ const AssignmentUpdateForm = ({ data }) => {
           selected={dueDate}
           required
           onChange={date => setDueDate(date)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
+          className="mt-1 p-2 w-full border rounded-md text-grey-600 font-roboto"
         />
       </div>
-      <div {...getRootProps()} className="border p-8 rounded-md bg-base-100">
+      <div {...getRootProps()} className="border p-8 rounded-md bg-base-100 font-roboto">
         <input {...getInputProps()} required />
         {isDragActive ? (
           <p>Drop the files here ...</p>
@@ -236,7 +236,7 @@ const AssignmentUpdateForm = ({ data }) => {
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-base-500 text-base p-2 rounded-md px-6 btn-outline border"
+          className="bg-base-500 text-base p-2 rounded-md px-6 btn-outline border font-roboto"
         >
           Submit
         </button>

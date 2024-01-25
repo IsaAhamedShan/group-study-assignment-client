@@ -43,38 +43,38 @@ const AssignmentDetails = ({ id,assignmentComplete }) => {
     <div className="flex flex-col gap-3"
     
     >
-      <h1>
+      <h1 className="font-raleway">
         <span className="font-bold">Task Name: </span>
         {data.title}
       </h1>
-      <h2>
+      <h2 className="font-raleway">
         <span className="font-bold">Task Assignee: </span>
         {data.taskAssignee}
       </h2>
-      <h2>
-        <span className="font-bold">Task Difficulty: </span>
+      <h2 className="font-raleway">
+        <span className="font-bold ">Task Difficulty: </span>
         {data.difficulty}
       </h2>
 
-      <p>
-        <span className="font-bold">Task Description: </span>
+      <p className="font-roboto">
+        <span className="font-bold ">Task Description: </span>
         {data.description}
       </p>
-      <p>
+      <p className="font-roboto">
         <span className="font-bold">Creation Date: </span>
         {data?.creationDate ? format(data.creationDate, "dd MMMM, yyyy") : null}
       </p>
       <p>
-        <span className="font-bold">Due Date: </span>
+        <span className="font-bold font-roboto">Due Date: </span>
         {data?.dueDate ? format(data.dueDate, "dd MMMM, yyyy") : null}
       </p>
-      <p>
+      <p className="font-roboto">
         <span className="font-bold">Task Status: </span>
         {data.status}
       </p>
       {data?.status !== "completed" ? (
         <button
-          className="btn btn-outline"
+          className="btn btn-outline font-roboto"
           onClick={() => document.getElementById("my_modal_2").showModal()}
         >
           Submit Assignment
@@ -82,7 +82,7 @@ const AssignmentDetails = ({ id,assignmentComplete }) => {
       ) : null}
       {data?.status === "completed" ? (
         <Link to={`/submittedAssignment/${id}`}>
-          <button className="btn btn-outline">Submit list</button>
+          <button className="btn btn-outline font-roboto">Submit list</button>
         </Link>
       ) : null}
 

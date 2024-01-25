@@ -173,26 +173,6 @@ const Navbar = () => {
                 value="wireframe"
               />
             </li>
-            <li>
-              <input
-                type="radio"
-                onClick={handleTheme}
-                name="theme-dropdown"
-                className="theme-controller rounded-sm btn btn-sm btn-block btn-ghost justify-start"
-                aria-label="Purgrey"
-                value="purgrey"
-              />
-            </li>
-            <li>
-              <input
-                type="radio"
-                onClick={handleTheme}
-                name="theme-dropdown"
-                className="theme-controller rounded-sm btn btn-sm btn-block btn-ghost justify-start"
-                aria-label="Business"
-                value="business"
-              />
-            </li>
           </ul>
         </div>
         {user ? (

@@ -50,7 +50,7 @@ const Home = () => {
       <Element name="Hero">
         <Hero></Hero>
       </Element>
-      <Element name="Features">
+      <Element name="Features">p
         <Features></Features>
       </Element>
       <Element name="CardComponent">

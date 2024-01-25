@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 const Features = () => {
   // console.log('index: ' + index);
   // console.log('item: ' + item);
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const featuresMutation = useMutation({
     mutationFn: async () => {
       try {
@@ -47,21 +47,20 @@ const Features = () => {
                 backgroundSize: "cover",
               }}
               whileHover={{
-                scale:1.05
+                scale: 1.05,
               }}
               whileTap={{
                 scale: 0.95,
               }}
               initial={{
-                x: index % 2 === 0 ? -80 : 80,
+                x: index % 2 === 0 ? -60 : 60,
                 opacity: 0.2,
               }}
-
               whileInView={{
                 opacity: 1,
                 x: 0,
                 transition: {
-                  duration: 1,
+                  duration: 0.3,
                 },
               }}
               viewport={{ once: true }}
@@ -69,10 +68,9 @@ const Features = () => {
               <Link to={item.location} className="w-full">
                 <div>
                   <p
-                    className={` py-8 px-2 text-3xl font-bold text-black ${
-                      index % 2 == 0 ? "text-left" : "text-right"
-                    }
-                    `}
+                    className={`py-8 px-8 text-3xl font-bold bg-gradient-to-r from-[#f84747] via-green-500 to-indigo-400  text-transparent bg-clip-text font-rancho ${
+                      index % 2 !== 0 ? "text-right" : "text-left"
+                    }`}
                   >
                     {item.heading}
                   </p>
@@ -81,9 +79,7 @@ const Features = () => {
             </motion.div>
           ))}
         </>
-      ) : (
-null
-      )}
+      ) : null}
     </div>
   );
 };

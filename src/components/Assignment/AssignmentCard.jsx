@@ -37,14 +37,14 @@ const AssignmentCard = ({
           )}
 
           <button
-            className={`btn text-black btn-sm rounded-md hover:text-white  bg-green-600 ${difficultyColor}`}
+            className={`btn text-black font-rancho btn-sm rounded-md hover:text-white  bg-green-600 ${difficultyColor}`}
           >
             {item.difficulty}
           </button>
         </div>
         <div>
-          <p className="font-bold text-xl my-3">{item.title}</p>
-          <p className="my-2">
+          <p className="font-bold font-raleway text-xl my-3">{item.title}</p>
+          <p className="my-2 font-roboto">
             {item.description.split(" ").slice(0, 11).join(" ")} ...
           </p>
           <p className="my-2">

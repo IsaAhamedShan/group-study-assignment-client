@@ -24,26 +24,26 @@ console.log(email,subject,description)
     <div className="grid grid-cols-1 py-16 md:grid-cols-2 px-4 md:px-8 lg:px-0">
       <div className="py-8 md:py-0">
         <div>
-          <h1 className="text-4xl font-bold mb-10">Get in touch with us!</h1>
+          <h1 className="font-raleway text-4xl font-bold mb-10">Get in touch with us!</h1>
         </div>
         <div className="[&>*]:my-6">
           <div className="flex gap-4 items-center justify-start">
             <IoMdMail className="w-8 h-8"></IoMdMail>
-            <p>isaahmedshan190138@gmail.com</p>{" "}
+            <p className="font-roboto">isaahmedshan190138@gmail.com</p>{" "}
           </div>
           <div className="flex gap-4 items-center justify-start">
             <FaPhoneSquare className="w-8 h-8"></FaPhoneSquare>
-            <p>+880 1625337883</p>
+            <p className="font-roboto">+880 1625337883</p>
           </div>
           <div className="flex gap-4 items-center justify-start">
             <FaLocationDot className="w-8 h-8"></FaLocationDot>{" "}
-            <p>Khalishpur,Khulna</p>
+            <p className="font-roboto">Khalishpur,Khulna</p>
           </div>
         </div>
       </div>
       <div>
         <div className="mb-8">
-          <h3 className="text-4xl font-bold">Contact Us!</h3>
+          <h3 className="font-raleway text-4xl font-bold">Contact Us!</h3>
         </div>
         <form onSubmit={handleContactUs}>
           <div className="mb-4">

@@ -4,8 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // raleway: ['Raleway', 'sans-serif'],
-        //  rancho: ['Rancho', 'cursive']
+        raleway: ['Raleway', 'sans-serif'],
+        rancho: ['Rancho', 'cursive'],
+        roboto: ['Roboto', 'sans-serif']
       },
     },
   },
