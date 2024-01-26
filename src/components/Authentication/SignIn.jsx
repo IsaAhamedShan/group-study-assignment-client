@@ -34,9 +34,9 @@ const SignIn = () => {
           console.log(res);
           signInSuccess();
           const user = { email };
-          axiosSecure.post("/jwt",user)
-          .then(res=>{console.log("cookie created and stored In localStorage successfully.",res)})
-          .catch(error=>{console.log("error creating cookie: ",error)})
+          // axiosSecure.post("/jwt",user)
+          // .then(res=>{console.log("cookie created and stored In localStorage successfully.",res)})
+          // .catch(error=>{console.log("error creating cookie: ",error)})
           navigate(location?.state ? location?.state : "/");
           console.log("loacton is ",location.state)
 

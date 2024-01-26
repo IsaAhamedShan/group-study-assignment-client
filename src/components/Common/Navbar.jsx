@@ -18,6 +18,7 @@ const Navbar = () => {
     logOut()
       .then(res => {
         console.log(res, "logged out");
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       })
       .catch(error => {
         console.log(error);

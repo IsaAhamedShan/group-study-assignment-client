@@ -16,6 +16,7 @@ import AssignmentCompleteList from "./pages/AssignmentCompleteList.jsx";
 import SubmittedAssignment from "../src/pages/SubmittedAssignments.jsx"
 import MyLifeTimeSubmittedList from "./components/Assignment/MyLifeTimeSubmittedList.jsx";
 import Private from "./private/Private.jsx";
+import SignInByReactForm from "./components/Authentication/SignInByReactForm.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <SignIn></SignIn>,
+        element: <SignInByReactForm></SignInByReactForm>,
       },
       {
         path:"/allUsersList",

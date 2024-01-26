@@ -65,7 +65,7 @@ const SubmittedAssignments = () => {
       marking_Time: new Date(),
     };
     console.log("marks details: ", marksDetails);
-    axios
+    axiosSecure
       .post(
         "/marksDetails",
         {
@@ -83,7 +83,7 @@ const SubmittedAssignments = () => {
       .then(res => {
         console.log("res is :", res);
 
-        axios
+        axiosSecure
           .patch("/markAddToAssignment", {
             assignment_id: submittedAssignmentInfo.assignment_id,
             submitter_email: submittedAssignmentInfo.email,
@@ -91,6 +91,7 @@ const SubmittedAssignments = () => {
           })
           .then(res => {
             console.log(res);
+            successMarking()
           })
           .catch(error => {
             console.log(error);
@@ -105,26 +106,26 @@ const SubmittedAssignments = () => {
   };
   //   console.log("Id in submitted assignments page: " + id);
   return (
-    <div>
+    <div className="flex flex-wrap gap-4 px-4 lg:px-0">
       <Toaster></Toaster>
-      <h1>Submitted Assignment</h1>
+      
       {submittedAssignmentsQuery?.data ? (
         submittedAssignmentsQuery.data.map(item => (
           <div
             key={item._id}
-            className="py-4 border-2 border-gray-600 w-96 [&>*]:py-2"
+            className="py-4 border-2 border-gray-600 w-96 [&>*]:py-2 rounded-md p-4"
           >
-            <p>
+            <p className="py-2">
               <span className="font-bold">Name</span>: {item.name}
             </p>
             <p>
               <span className="font-bold">Email</span>: {item.email}
             </p>
-            <p>
+            <p className="py-4">
               Assignment:{" "}
               <a
                 href={item.submitted_Assignment}
-                className="font-bold underline"
+                className="font-bold underline "
               >
                 Download
               </a>
@@ -133,7 +134,7 @@ const SubmittedAssignments = () => {
             {/* <img className="w-24 h-24" src={item.image} alt="" /> */}
             {item.email !== user?.email ? (
               <button
-                className="btn btn-outline"
+                className="btn btn-outline pt-4"
                 onClick={() => {
                   setSubmittedAssignmentInfo(item);
                   document.getElementById("giveMark").showModal();

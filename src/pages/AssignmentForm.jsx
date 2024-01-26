@@ -15,7 +15,7 @@ const AssignmentForm = () => {
   const [difficulty, setDifficulty] = useState("easy");
   const [dueDate, setDueDate] = useState(new Date());
   const [creationDate, setCreationDate] = useState(new Date());
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const { user } = useContext(AuthContext);
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";
@@ -24,7 +24,7 @@ const AssignmentForm = () => {
     toast.success("Assignment created successfully!");
   };
 
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const handleImageLinkGenerate = async droppedImage => {
     const formData = new FormData();
     formData.append("file", droppedImage);
@@ -117,7 +117,10 @@ const AssignmentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8 px-4 md:px-0 md:my-14">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-lg mx-auto mt-8 px-4 md:px-0 md:my-14"
+    >
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-4">
         <label
