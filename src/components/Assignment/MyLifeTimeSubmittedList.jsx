@@ -46,7 +46,7 @@ const MyLifeTimeSubmittedList = () => {
           }
         )
         .then(res => {
-          console.log(res);
+          // console.log(res);
           setTotalDoc(parseInt(res.data.totalDocCount));
           setDocBeforeCreationTime(
             parseInt(res.data.docCountAfterCreationUser)
