@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SubmittedAssignments = () => {
   const [marks, setMarks] = useState("");

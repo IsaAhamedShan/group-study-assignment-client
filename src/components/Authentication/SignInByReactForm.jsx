@@ -49,31 +49,38 @@ const SignInByReactForm = () => {
         signInUnsuccess();
       });
   };
-  const handleGoogleSignIn = ()=>{
+  const handleGoogleSignIn = () => {
     googleSignIn()
-    .then(res => {
-      console.log(res);
-      axiosSecure
-        .post("/users", {
+      .then(res => {
+        console.log(res);
+        axiosSecure.post("/users", {
           username: auth.currentUser.displayName,
           email: auth.currentUser.email,
           image: auth.currentUser.photoURL ? auth.currentUser.photoURL : null,
-        })
-        .then(function (response) {
-          console.log(response);
-          navigate(location?.state ? location?.state : "/");
-        })
-        .catch(function (error) {
-          console.log(error);
         });
-      // console.log(auth.currentUser.email,auth.currentUser.email, auth.currentUser.photoURL)
-      signInSuccess();
-    })
-    .catch(error => {
-      signInUnsuccess();
-      console.log(error);
-    });
-  }
+        const email = auth.currentUser.email;
+        const user = { email };
+        axiosSecure
+          .post("/jwt", user)
+          .then(res => {
+            console.log(
+              "cookie created and stored In localStorage successfully from google signin.",
+              res
+            );
+          })
+          .catch(error => {
+            console.log("error creating cookie from google signin: ", error);
+          });
+        // console.log(auth.currentUser.email,auth.currentUser.email, auth.currentUser.photoURL)
+        signInSuccess();
+        navigate(location?.state ? location?.state : "/");
+        console.log(location.state);
+      })
+      .catch(error => {
+        signInUnsuccess();
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 bg-base-100 min-h-screen font-raleway">
@@ -91,7 +98,9 @@ const SignInByReactForm = () => {
                   placeholder="example@gmail.com"
                 />
                 {errors.email?.type === "required" && (
-                  <p className="text-red-600" role="alert">Email is required</p>
+                  <p className="text-red-600" role="alert">
+                    Email is required
+                  </p>
                 )}
                 <label htmlFor="password">Password</label>
                 <input
@@ -99,16 +108,18 @@ const SignInByReactForm = () => {
                   type="password"
                   {...register("password", {
                     required: "Password is required",
-                    minLength:{
+                    minLength: {
                       value: 6,
-                      message: "It should be at least 6 characters"
-                    }
+                      message: "It should be at least 6 characters",
+                    },
                   })}
                   aria-invalid={errors.password ? "true" : "false"}
                   placeholder="Password here"
                 />
                 {errors.password && (
-                  <p className="text-red-600" role="alert">{errors.password.message}</p>
+                  <p className="text-red-600" role="alert">
+                    {errors.password.message}
+                  </p>
                 )}
 
                 <button

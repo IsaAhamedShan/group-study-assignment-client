@@ -13,13 +13,14 @@ const MyLifeTimeSubmittedList = () => {
     setUserTotalSubmissionCount,
     user,
     userCreationTime,
+    logOut,
   } = useContext(AuthContext);
-  const [idForDetails, setIdForDetails] = useState('');
+  const [idForDetails, setIdForDetails] = useState("");
   const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
   // const [assignmentComplete, setAssignmentComplete] = useState(true);
-  const [totalDoc, setTotalDoc] = useState('');
-  const [docAfterCreationTime, setDocBeforeCreationTime] = useState('');
-  const axiosSecure = useAxiosSecure()
+  const [totalDoc, setTotalDoc] = useState("");
+  const [docAfterCreationTime, setDocBeforeCreationTime] = useState("");
+  const axiosSecure = useAxiosSecure();
   const submissionLifeTime = useQuery({
     queryKey: ["lifeTimeSubmitedList"],
     queryFn: async () => {
@@ -29,24 +30,32 @@ const MyLifeTimeSubmittedList = () => {
       );
       console.log("res from life time submission  :", response?.data);
       setUserTotalSubmissionCount(response.data.length);
-
+      
       return response.data;
     },
     onSuccess: () => {
       console.log("submissionLifeTimeSubmittedList success");
     },
+    onError:(error)=>{
+      if(error.response && error.response.status === 403){
+        logOut()
+          .then(() => {
+            console.log("user logged out because of unauthorized");
+          })
+          .catch(() => {
+            console.log("error while logout after finding invalid user");
+          });
+      }
+    }
   });
   const progressStatisticsCheck = useMutation({
     mutationFn: async () => {
       axios
-        .get(
-          `/progressStatisticsCheck/${userCreationTime}`,
-          {
-            userCreationDate: userCreationTime,
-          }
-        )
+        .get(`/progressStatisticsCheck/${userCreationTime}`, {
+          userCreationDate: userCreationTime,
+        })
         .then(res => {
-          console.log(res);
+          // console.log(res);
           setTotalDoc(parseInt(res.data.totalDocCount));
           setDocBeforeCreationTime(
             parseInt(res.data.docCountAfterCreationUser)
@@ -128,7 +137,7 @@ const MyLifeTimeSubmittedList = () => {
                 </p>
               </div>
             ))
-          : ''}
+          : ""}
       </div>
     </div>
   );

@@ -1,26 +1,32 @@
 import { useContext, useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+
 import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  // const history = useHistory()
+  const location = useLocation();
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
 
-  const handleTheme = e => {
+  const handleTheme = (e) => {
     const value = e.target.value;
     console.log(value);
     setTheme(value);
   };
+
   const handleLogOut = () => {
     logOut()
-      .then(res => {
+      .then((res) => {
         console.log(res, "logged out");
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        location.pathname = "/";
+        document.cookie =
+          "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
