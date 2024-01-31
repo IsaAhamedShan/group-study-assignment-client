@@ -68,7 +68,7 @@ const Features = () => {
               <Link to={item.location} className="w-full">
                 <div>
                   <p
-                    className={`py-8 px-8 text-3xl font-bold bg-gradient-to-r from-[#f84747] via-green-500 to-indigo-400  text-transparent bg-clip-text font-rancho ${
+                    className={`py-8 z-10 px-8 text-3xl font-bold bg-gradient-to-r from-[#f84747] via-green-500 to-indigo-400  text-transparent bg-clip-text font-rancho ${
                       index % 2 !== 0 ? "text-right" : "text-left"
                     }`}
                   >

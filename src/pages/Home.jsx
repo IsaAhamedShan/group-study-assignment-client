@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useContext, useEffect} from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 import Hero from "../components/Layout/Hero";
@@ -7,13 +7,12 @@ import Hero from "../components/Layout/Hero";
 import Footer from "../components/Common/Footer";
 import Features from "../components/Layout/Features";
 
-import CardComponent from "../components/Layout/cardComponent";
-import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 import {
   Element,
-
 } from "react-scroll";
 import ContactUs from "../components/Common/ContactUs";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import CardComponent from "../components/Layout/cardComponent";
 const Home = () => {
   const { userCreationTime, userTotalSubmissionCount, user } =
     useContext(AuthContext);
