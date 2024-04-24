@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { NavLink, useLocation } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
-
+import mainLogo from "../../assets/mainLogo.png"
 import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -96,6 +96,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 sticky top-0">
       <div className="navbar-start">
+        
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -120,13 +121,14 @@ const Navbar = () => {
             {navList}
           </ul>
         </div>
+        <img src={mainLogo} className="w-48" alt="" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 [&>li]:p-2">{navList}</ul>
       </div>
       <div className="navbar-end">
         {/* theme controller */}
-        <div className="dropdown pr-32">
+        <div className="dropdown pr-6 md:pr-24">
           <div tabIndex={0} role="button" className="btn m-1 rounded-sm w-24">
             Theme
             <svg
