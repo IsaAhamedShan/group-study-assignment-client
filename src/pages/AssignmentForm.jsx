@@ -5,8 +5,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDropzone } from "react-dropzone";
 import toast, { Toaster } from "react-hot-toast";
-import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import { AuthContext } from "../provider/AuthProvider";
 const AssignmentForm = () => {
   // HOOKS
   const [title, setTitle] = useState("");
@@ -19,9 +20,10 @@ const AssignmentForm = () => {
   const { user } = useContext(AuthContext);
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";
+  const navigate = useNavigate();
   //FUNCTIONS
   const successAssignmentCreation = () => {
-    toast.success("Assignment created successfully!");
+    return toast.success("Assignment created successfully!");
   };
 
   const axiosSecure = useAxiosSecure();
@@ -53,12 +55,14 @@ const AssignmentForm = () => {
         taskAssignee: user.displayName,
       })
       .then(res => {
-        console.log(res);
+        console.log("gg", res);
+        
       })
       .catch(error => {
         console.log(error);
       });
     successAssignmentCreation();
+
     // setTitle("");
     // setDescription("");
     // setMarks("");
@@ -114,6 +118,13 @@ const AssignmentForm = () => {
     await assignmentSubmitMutation.mutateAsync({ assignmentDetails });
     // Perform form submission or validation logic here
     // You can access form data in the state variables (title, description, marks, etc.)
+    // e.target.reset(); we cant use this because we are controlling value by state which is called controlled state;
+    setTitle("");
+    setDescription("");
+    setMarks("");
+    setDifficulty("");
+    setImage(""); // Reset any other state variables as needed
+    setDueDate("");
   };
 
   return (
