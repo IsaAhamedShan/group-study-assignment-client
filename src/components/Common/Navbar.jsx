@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { NavLink, useLocation } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
-import mainLogo from "../../assets/mainLogo.png"
+import mainLogo from "../../assets/mainLogo.png";
 import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -42,33 +42,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      {/* <section id="section1" className="h-screen bg-blue-500">
-        <h1>Section 1</h1> */}
-      {/* {user ? (
-        <li>
-          <NavLink to="/allUsersList">Users</NavLink>
-        </li>
-      ) : null} */}
 
-      {/* {user ? (
-        <li>
-          <NavLink to="/allAssignment">Assignment List</NavLink>
-        </li>
-      ) : null} */}
-
-      {/* {user ? (
-        <li>
-          <NavLink to="assignmentCompleteList">
-            Assignment Complete List
-          </NavLink>
-        </li>
-      ) : null} */}
-
-      {/* {user ? (
-        <li>
-          <NavLink to="/assignmentForm">Create Assignment</NavLink>
-        </li>
-      ) : null} */}
       {user ? (
         <li>
           <NavLink to={`/myLifeTimeSubmission/${user.email}`}>
@@ -91,6 +65,7 @@ const Navbar = () => {
           <button onClick={handleLogOut}>Logout</button>
         </li>
       ) : null}
+      
     </>
   );
   return (
@@ -121,15 +96,15 @@ const Navbar = () => {
             {navList}
           </ul>
         </div>
-        <img src={mainLogo} className="w-48" alt="" />
+        <img src={mainLogo} className=" w-32 md:w-48" alt="" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 [&>li]:p-2">{navList}</ul>
       </div>
       <div className="navbar-end">
         {/* theme controller */}
-        <div className="dropdown pr-6 md:pr-24">
-          <div tabIndex={0} role="button" className="btn m-1 rounded-sm w-24">
+        <div className="dropdown pr-2 md:pr-24">
+          <div tabIndex={0} role="button" className="btn m-1 rounded-sm w-20 h-6 lg:w-24">
             Theme
             <svg
               width="12px"
@@ -188,7 +163,7 @@ const Navbar = () => {
           </ul>
         </div>
         {user ? (
-          <div className="flex gap-4 justify-center items-center px-4">
+          <div className="flex gap-4 justify-center items-center px-0 md:px-4">
             {user?.photoURL ? (
               <img
                 className="w-12 h-12 rounded-full"

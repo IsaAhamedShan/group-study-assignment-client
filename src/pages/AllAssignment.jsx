@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { motion } from "framer-motion";
-import Swal from "sweetalert2";
-import AssignmentCard from "../components/Assignment/AssignmentCard";
 import { useContext, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
-import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import AssignmentCard from "../components/Assignment/AssignmentCard";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AllAssignment = () => {
   const axiosSecure = useAxiosSecure();
@@ -71,35 +70,37 @@ const AllAssignment = () => {
   }
 
   return (
-    <div className="flex justify-between items-center md:my-14">
-      <motion.div
-        className="flex gap-4 flex-wrap justify-center items-center"
-        // variants={assignmentCardVariant}
-      >
-        {allAssignmentsMutation.data.map(item => (
-          <motion.div
-            key={item._id}
-            initial={{
-              opacity: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                duration: 1,
-              },
-            }}
-            viewport={{ once: true }}
-          >
-            <AssignmentCard
-              item={item}
-              idForDetails={idForDetails}
-              handleDeleteAssignment={handleDeleteAssignment}
-              setIdForDetails={setIdForDetails}
-            ></AssignmentCard>
-          </motion.div>
-        ))}
-      </motion.div>
+    <div className="flex justify-between  items-center md:my-14">
+      {allAssignmentsMutation.data?.length > 0 ? (
+        <motion.div
+          className="flex gap-4 flex-wrap justify-center items-center"
+          // variants={assignmentCardVariant}
+        >
+          {allAssignmentsMutation.data.map(item => (
+            <motion.div
+              key={item._id}
+              initial={{
+                opacity: 0,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 1,
+                },
+              }}
+              viewport={{ once: true }}
+            >
+              <AssignmentCard
+                item={item}
+                idForDetails={idForDetails}
+                handleDeleteAssignment={handleDeleteAssignment}
+                setIdForDetails={setIdForDetails}
+              ></AssignmentCard>
+            </motion.div>
+          ))}
+        </motion.div>
+      ) : <div className="flex w-full justify-center items-center my-20"> <p className="text-3xl md:text-5xl lg:text-7xl m-auto text-gray-300">Empty</p></div>}
     </div>
   );
 };

@@ -4,8 +4,8 @@ import { format } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import ProgressStatisticsPieChart from "../PieChart/ProgressStatisticsPieChart";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import ProgressStatisticsPieChart from "../PieChart/ProgressStatisticsPieChart";
 const MyLifeTimeSubmittedList = () => {
   const { id } = useParams();
   const {
@@ -29,7 +29,10 @@ const MyLifeTimeSubmittedList = () => {
         { withCredentials: true }
       );
       console.log("res from life time submission  :", response?.data);
-      setUserTotalSubmissionCount(response.data.length);
+      
+
+        setUserTotalSubmissionCount(response.data.length);
+      
       
       return response.data;
     },

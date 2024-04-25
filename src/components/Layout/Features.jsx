@@ -79,7 +79,7 @@ const Features = () => {
             </motion.div>
           ))}
         </>
-      ) : null}
+      ) :  <div className="mx-auto loading loading-ring loading-5xl w-[400px] h-[250px]"></div>}
     </div>
   );
 };
