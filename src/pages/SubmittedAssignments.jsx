@@ -105,10 +105,10 @@ const SubmittedAssignments = () => {
   };
   //   console.log("Id in submitted assignments page: " + id);
   return (
-    <div className="flex flex-wrap gap-4 px-4 lg:px-0">
+    <div className="flex flex-wrap gap-4 px-4 lg:px-0 justify-center items-center">
       <Toaster></Toaster>
       
-      {submittedAssignmentsQuery?.data ? (
+      {submittedAssignmentsQuery?.data.length>0? (
         submittedAssignmentsQuery.data.map(item => (
           <div
             key={item._id}
@@ -187,7 +187,9 @@ const SubmittedAssignments = () => {
           </div>
         ))
       ) : (
-        <p>No submitted assignments available</p>
+      
+        <p className="text-5xl md:text-7xl text-gray-400 text-center my-10">Empty</p>
+        
       )}
     </div>
   );

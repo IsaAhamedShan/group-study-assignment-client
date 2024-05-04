@@ -38,7 +38,7 @@ const Navbar = () => {
   const navList = (
     <>
       <li>
-        <NavLink to="/" smooth={true} duration={500}>
+        <NavLink to="/">
           Home
         </NavLink>
       </li>

@@ -13,14 +13,7 @@ const Footer = () => {
         >
           About us
         </Link>
-        <Link
-          to="ContactUs"
-          smooth={true}
-          duration={500}
-          className="link link-hover"
-        >
-          Contact Us
-        </Link>
+        
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">
