@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-
+import ReactiveButton from 'reactive-button';
 const Hero = () => {
   const imgLink = "https://i.ibb.co/MSXCGJc/wallpaperflare-com-wallpaper-1.jpg";
   const backgroundStyle = {
@@ -9,7 +9,10 @@ const Hero = () => {
   };
   const { user } = useContext(AuthContext);
   return (
-    <div className="hero min-h-[40vh] md:min-h-[50vh] lg:min-h-[50vh] snap-center" style={backgroundStyle}>
+    <div
+      className="hero min-h-[40vh] md:min-h-[50vh] lg:min-h-[50vh] snap-center"
+      style={backgroundStyle}
+    >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
@@ -18,9 +21,9 @@ const Hero = () => {
           </h1>
           {/* <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p> */}
           <Link to={user ? "/allAssignment" : "/signin"}>
-            <button className="btn font-roboto bg-base-500 btn-sm md:btn-md">
-              Get Started
-            </button>
+         
+
+          <ReactiveButton color="light" size="medium" outline idleText={"Get Started"}  />
           </Link>
         </div>
       </div>

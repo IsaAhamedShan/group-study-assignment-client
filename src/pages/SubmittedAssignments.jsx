@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const SubmittedAssignments = () => {
   const [marks, setMarks] = useState("");
@@ -106,6 +107,10 @@ const SubmittedAssignments = () => {
   //   console.log("Id in submitted assignments page: " + id);
   return (
     <div className="flex flex-wrap gap-4 px-4 lg:px-0 justify-center items-center">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Submitted Assignment</title>
+      </Helmet>
       <Toaster></Toaster>
       
       {submittedAssignmentsQuery?.data.length>0? (

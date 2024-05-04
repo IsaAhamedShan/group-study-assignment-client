@@ -1,21 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-
 import Hero from "../components/Layout/Hero";
-
 import Footer from "../components/Common/Footer";
 import Features from "../components/Layout/Features";
-
-import {
-  Element,
-} from "react-scroll";
+import { Element } from "react-scroll";
 import ContactUs from "../components/Common/ContactUs";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 import CardComponent from "../components/Layout/cardComponent";
+import { Helmet } from "react-helmet";
+
 const Home = () => {
-  const { userCreationTime, userTotalSubmissionCount, user } =
-    useContext(AuthContext);
+  // const { userCreationTime, userTotalSubmissionCount, user } =
+  //   useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   // console.log("userCreationTime at home is: " + userCreationTime);
   // console.log("user at home is ", user)
@@ -35,24 +32,27 @@ const Home = () => {
   }, []);
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+      </Helmet>
       <div>
-      <Element name="Hero">
-        <Hero></Hero>
-      </Element>
-      <Element name="Features">
-        <Features></Features>
-      </Element>
-      <Element name="CardComponent">
-        <CardComponent></CardComponent>
-      </Element>
-    <Element name="ContactUs">
-      <ContactUs>
-      </ContactUs>
-    </Element>
-      <Element name="Footer">
-        <Footer></Footer>
-      </Element>
-    </div>
+        <Element name="Hero">
+          <Hero></Hero>
+        </Element>
+        <Element name="Features">
+          <Features></Features>
+        </Element>
+        <Element name="CardComponent">
+          <CardComponent></CardComponent>
+        </Element>
+        <Element name="ContactUs">
+          <ContactUs></ContactUs>
+        </Element>
+        <Element name="Footer">
+          <Footer></Footer>
+        </Element>
+      </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { FaPhoneSquare } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import ReactiveButton from 'reactive-button';
 const ContactUs = () => {
   const axiosSecure = useAxiosSecure();
   const successToast = () =>
@@ -23,7 +24,8 @@ const ContactUs = () => {
         subject: subject,
         description: description,
       })
-      .then(() => {
+      .then((res) => {
+        console.log(res)
         successToast();
         form.reset()
       })
@@ -117,12 +119,13 @@ const ContactUs = () => {
               className="mt-1 p-2 w-full border rounded-md text-grey-600"
             />
           </div>
-          <button
+          <ReactiveButton type="submit" width={100} color="light" size="large" idleText={"Send"} style={{borderRadius:'6px'}} outline />
+          {/* <button
             className="btn bg-base-300 btn-normal md:btn-wide"
             type="submit"
           >
             Submit
-          </button>
+          </button> */}
         </form>
       </div>
     </div>

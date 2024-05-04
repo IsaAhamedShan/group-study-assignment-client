@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 import AssignmentCard from "../components/Assignment/AssignmentCard";
+import { Helmet } from "react-helmet";
 const AssignmentCompleteList = () => {
   const [idForDetails, setIdForDetails] = useState('');
   const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
@@ -55,6 +56,10 @@ const AssignmentCompleteList = () => {
 
   return (
     <div className="flex justify-center gap-4 flex-wrap py-14">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Assignment Complete List</title>
+      </Helmet>
       {assignmentCompleteListMutation.data.map(item => (
         <motion.div
           key={item._id}

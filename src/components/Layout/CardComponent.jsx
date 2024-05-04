@@ -3,6 +3,7 @@ import { useState } from "react";
 import aboutusmain from "../../assets/aboutusmain.jpeg";
 import aboutussub from "../../assets/aboutussub.jpeg";
 import AboutUs from "./AboutUs";
+
 const CardComponent = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -33,6 +34,7 @@ const CardComponent = () => {
           </div>
         </motion.div>
       </div>
+
     </div>
   );
 };

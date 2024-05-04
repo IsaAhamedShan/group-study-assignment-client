@@ -6,6 +6,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import AssignmentCard from "../components/Assignment/AssignmentCard";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AllAssignment = () => {
   const axiosSecure = useAxiosSecure();
@@ -71,6 +72,10 @@ const AllAssignment = () => {
 
   return (
     <div className="flex justify-between  items-center md:my-14">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>All Assignment</title>
+      </Helmet>
       {allAssignmentsMutation.data?.length > 0 ? (
         <motion.div
           className="flex gap-4 flex-wrap justify-center items-center"
@@ -100,7 +105,7 @@ const AllAssignment = () => {
             </motion.div>
           ))}
         </motion.div>
-      ) : <div className="flex w-full justify-center items-center my-20"> <p className="text-3xl md:text-5xl lg:text-7xl m-auto text-gray-300">Empty</p></div>}
+      ) : <div className="flex w-full justify-center items-center my-20"> <p className="text-3xl md:text-5xl lg:text-7xl m-auto text-gray-300">There is no active Assignment</p></div>}
     </div>
   );
 };
