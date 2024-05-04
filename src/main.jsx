@@ -17,6 +17,7 @@ import SubmittedAssignment from "../src/pages/SubmittedAssignments.jsx"
 import MyLifeTimeSubmittedList from "./components/Assignment/MyLifeTimeSubmittedList.jsx";
 import Private from "./private/Private.jsx";
 import SignInByReactForm from "./components/Authentication/SignInByReactForm.jsx";
+import { Helmet } from "react-helmet";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
+     
     <div className="max-w-7xl m-auto">
       <AuthProvider>
         <React.StrictMode>
