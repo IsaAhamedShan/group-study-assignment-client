@@ -62,7 +62,7 @@ const AssignmentCompleteList = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-2">
         <input
           type="text"
           placeholder="Search..."
