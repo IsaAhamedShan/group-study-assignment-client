@@ -1,13 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {
-    FaEye,
-    FaEyeSlash,
-    FaFacebook,
-    FaGithub,
-    FaGoogle,
+  FaEye,
+  FaEyeSlash,
+  FaFacebook,
+  FaGithub,
+  FaGoogle,
 } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";

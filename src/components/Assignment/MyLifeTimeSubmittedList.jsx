@@ -28,7 +28,7 @@ const MyLifeTimeSubmittedList = () => {
         `/usersLifeTimeSubmittedList?email=${user?.email}`,
         { withCredentials: true }
       );
-      console.log("res from life time submission  :", response?.data);
+      // console.log("res from life time submission  :", response?.data);
 
       setUserTotalSubmissionCount(response.data.length);
 

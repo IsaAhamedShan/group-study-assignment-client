@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-const COLORS = ["#0088FE", "#00d8b0"];
+const COLORS = ["#21c500", "#fc2121"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -33,11 +33,11 @@ const renderCustomizedLabel = ({
 class progressStatisticsPieChart extends React.Component {
   render() {
     const { userTotalSubmissionCount, docAfterCreationTime } = this.props;
-    console.log("userTotalSubmissionCount", userTotalSubmissionCount);
-    console.log("docAfterCreationTime ",docAfterCreationTime);
+    // console.log("userTotalSubmissionCount", userTotalSubmissionCount);
+    // console.log("docAfterCreationTime ",docAfterCreationTime);
     const data = [
       { name: `Completed (${userTotalSubmissionCount}) `, value: userTotalSubmissionCount },
-      { name: `Total (${docAfterCreationTime})`, value: parseInt(docAfterCreationTime) },
+      { name: `Missed(${docAfterCreationTime})`, value: parseInt(docAfterCreationTime) },
     ];
     return (
       userTotalSubmissionCount >0 ? (<div className="bg-white w-[300px] h-[300px]">
