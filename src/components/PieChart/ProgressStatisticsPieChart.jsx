@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#0088FE", "#00d8b0"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -33,10 +33,11 @@ const renderCustomizedLabel = ({
 class progressStatisticsPieChart extends React.Component {
   render() {
     const { userTotalSubmissionCount, docAfterCreationTime } = this.props;
-    console.log("u and d ", userTotalSubmissionCount, docAfterCreationTime);
+    console.log("userTotalSubmissionCount", userTotalSubmissionCount);
+    console.log("docAfterCreationTime ",docAfterCreationTime);
     const data = [
-      { name: "Group A", value: userTotalSubmissionCount },
-      { name: "Group B", value: docAfterCreationTime },
+      { name: `Completed (${userTotalSubmissionCount}) `, value: userTotalSubmissionCount },
+      { name: `Total (${docAfterCreationTime})`, value: parseInt(docAfterCreationTime) },
     ];
     return (
       userTotalSubmissionCount >0 ? (<div className="bg-white w-[300px] h-[300px]">
@@ -62,18 +63,10 @@ class progressStatisticsPieChart extends React.Component {
                 />
               ))}
             </Pie>
+          <Legend></Legend>
           </PieChart>
         </ResponsiveContainer>
-        <div className="flex justify-around items-center w-full pb-4">
-          <div>
-            <span className="text-center text-[#00C49F]">Completed</span>
-            <div className="w-20 h-2 bg-[#00C49F] rounded-md pl-2"></div>
-          </div>
-          <div>
-            <span className="text-center text-[#0088FE]">Missed</span>
-            <div className="w-20 h-2 bg-[#0088FE] rounded-md pl-2"></div>
-          </div>
-        </div>
+        
       </div>
     </div>) : <div className="flex justify-center items-center my-20"> <p className="text-3xl md:text-5xl lg:text-7xl m-auto text-gray-300">Empty</p></div>
       

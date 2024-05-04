@@ -45,7 +45,7 @@ const Navbar = () => {
 
       {user ? (
         <li>
-          <NavLink to={`/myLifeTimeSubmission/${user.email}`}>
+          <NavLink to={`/myLifeTimeSubmission`}>
             My submission list
           </NavLink>
         </li>

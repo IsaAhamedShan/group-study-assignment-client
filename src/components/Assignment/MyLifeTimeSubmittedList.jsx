@@ -7,7 +7,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import ProgressStatisticsPieChart from "../PieChart/ProgressStatisticsPieChart";
 const MyLifeTimeSubmittedList = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const {
     userTotalSubmissionCount,
     setUserTotalSubmissionCount,
@@ -19,28 +19,26 @@ const MyLifeTimeSubmittedList = () => {
   const [difficultyColor, setDifficultyColor] = useState("bg-green-400");
   // const [assignmentComplete, setAssignmentComplete] = useState(true);
   const [totalDoc, setTotalDoc] = useState("");
-  const [docAfterCreationTime, setDocBeforeCreationTime] = useState("");
+  const [docAfterCreationTime, setDocAfterCreationTime] = useState("");
   const axiosSecure = useAxiosSecure();
   const submissionLifeTime = useQuery({
     queryKey: ["lifeTimeSubmitedList"],
     queryFn: async () => {
       const response = await axiosSecure.get(
-        `/usersLifeTimeSubmittedList/${id}`,
+        `/usersLifeTimeSubmittedList?email=${user?.email}`,
         { withCredentials: true }
       );
       console.log("res from life time submission  :", response?.data);
-      
 
-        setUserTotalSubmissionCount(response.data.length);
-      
-      
+      setUserTotalSubmissionCount(response.data.length);
+
       return response.data;
     },
     onSuccess: () => {
       console.log("submissionLifeTimeSubmittedList success");
     },
-    onError:(error)=>{
-      if(error.response && error.response.status === 403){
+    onError: error => {
+      if (error.response && error.response.status === 403) {
         logOut()
           .then(() => {
             console.log("user logged out because of unauthorized");
@@ -49,32 +47,29 @@ const MyLifeTimeSubmittedList = () => {
             console.log("error while logout after finding invalid user");
           });
       }
-    }
+    },
   });
-  const progressStatisticsCheck = useMutation({
-    mutationFn: async () => {
-      axios
-        .get(`/progressStatisticsCheck/${userCreationTime}`, {
-          userCreationDate: userCreationTime,
-        })
-        .then(res => {
-          // console.log(res);
-          setTotalDoc(parseInt(res.data.totalDocCount));
-          setDocBeforeCreationTime(
-            parseInt(res.data.docCountAfterCreationUser)
-          );
-        })
-        .catch(error => console.log(error));
+  const progressStatisticsCheck = useQuery({
+    queryKey: ['progresss'],
+   queryFn: async () => {
+      try{
+        const res = await axiosSecure.get(`/progressStatisticsCheck?userCreationTime=${userCreationTime}`,);
+        return res.data;
+      }
+      catch(err){
+        throw new Error(err)
+      }
+      
     },
     onSuccess: () => {
       console.log("progress statistics function executed successfully");
     },
   });
-  useEffect(() => {
-    if (userCreationTime) {
-      progressStatisticsCheck.mutateAsync();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userCreationTime) {
+  //     progressStatisticsCheck.mutateAsync();
+  //   }
+  // }, [progressStatisticsCheck,userCreationTime]);
   const getDifficultyColor = difficulty => {
     switch (difficulty) {
       case "easy":
@@ -91,10 +86,12 @@ const MyLifeTimeSubmittedList = () => {
   return (
     <div className="">
       <div className="m-16 flex justify-center items-center">
-        <ProgressStatisticsPieChart
-          userTotalSubmissionCount={userTotalSubmissionCount}
-          docAfterCreationTime={docAfterCreationTime}
-        ></ProgressStatisticsPieChart>
+        {progressStatisticsCheck && userTotalSubmissionCount && (
+          <ProgressStatisticsPieChart
+            userTotalSubmissionCount={userTotalSubmissionCount}
+            docAfterCreationTime={progressStatisticsCheck?.data?.docCountAfterCreationUser}
+          ></ProgressStatisticsPieChart>
+        )}
       </div>
       {/* <p>total submission:{submissionLifeTime.data?.length}</p> */}
 

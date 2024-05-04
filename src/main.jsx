@@ -71,7 +71,7 @@ const router = createBrowserRouter([
         </Private>
       },
       {
-        path:"/myLifeTimeSubmission/:id",
+        path:"/myLifeTimeSubmission",
         element:<Private>
           <MyLifeTimeSubmittedList></MyLifeTimeSubmittedList>
         </Private>

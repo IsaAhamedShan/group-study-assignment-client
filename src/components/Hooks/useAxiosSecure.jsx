@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 const axiosSecure = axios.create({
-    baseURL: 'https://group-study-assignment-server.onrender.com',
+    baseURL: 'http://localhost:5000/',
     withCredentials: true
 })
 const useAxiosSecure = () => {
