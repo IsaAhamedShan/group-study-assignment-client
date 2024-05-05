@@ -31,13 +31,27 @@ const SignIn = () => {
       logIn(email, password)
         .then(res => {
           console.log(res);
-          signInSuccess();
+          // signInSuccess();
           const user = { email };
           // axiosSecure.post("/jwt",user)
           // .then(res=>{console.log("cookie created and stored In localStorage successfully.",res)})
           // .catch(error=>{console.log("error creating cookie: ",error)})
+          // axiosSecure
+          // .post("/users", {
+          //   username: auth.currentUser.displayName,
+          //   email: auth.currentUser.email,
+          //   image: auth.currentUser.photoURL ? auth.currentUser.photoURL : null,
+          // })
+          // .then(function (response) {
+          //   console.log(response);
+          //   navigate(location?.state ? location?.state : "/");
+          // })
+          // .catch(function (error) {
+          //   console.log(error);
+          // });
+          
+            console.log("loacton is ",location?.state)
           navigate(location?.state ? location?.state : "/");
-          console.log("loacton is ",location.state)
 
         })
         .catch(error => {

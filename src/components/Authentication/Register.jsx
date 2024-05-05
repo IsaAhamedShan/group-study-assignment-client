@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from 'axios';
 import { updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -10,44 +9,45 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { register, user, auth, logOut } = useContext(AuthContext);
-  const navigate = useNavigate()
-const successRegistration = ()=>{toast.success("Registration success!")}
-const unsuccessfulRegistration = ()=>{toast.error("Registration unsuccessful!")}
-const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate();
+  const successRegistration = () => {
+    toast.success("Registration success!");
+  };
+  const unsuccessfulRegistration = () => {
+    toast.error("Registration unsuccessful!");
+  };
+  const axiosSecure = useAxiosSecure();
   const registrationMutation = useMutation({
     mutationFn: async ({ username, email, password }) => {
-      console.log('add user details inside mutationFn is: ', username, email, password)
-      await register(email, password)
-        .then(res => {
-          console.log("user:", user);
-          updateProfile(auth.currentUser, {
-            displayName: username,
-          });
-          axiosSecure.post('/users',{
-            username: username,
-            email: email,
-            image: auth.currentUser.photoURL? auth.currentUser.photoURL : null
-          })
-          .then(response=> {
-            console.log("added: ",response);
-          })
-          .catch(error=> {
-            console.log(error);
-          });
-          console.log(res);
-          successRegistration()
-
-          logOut();
-          setTimeout(() => {
-            navigate('/signin');
-          }, 1500);
-        })
-        .catch(error => {
-          console.log(error);
-          unsuccessfulRegistration()
+      console.log(
+        "add user details inside mutationFn is: ",
+        username,
+        email,
+        password
+      );
+      try {
+        const res = await register(email, password);
+        await updateProfile(auth.currentUser, {
+          displayName: username,
         });
+        const userinsertres = await axiosSecure.post("/users", {
+          username: username,
+          email: email,
+          image: auth.currentUser.photoURL ? auth.currentUser.photoURL : null,
+        });
+        // console.log("registration response: ",res);
+        // console.log("user insert res response: ",userinsertres);
+        if(userinsertres){
+          logOut();
+          successRegistration();
+          navigate("/signin");
+        }
+      } catch (err) {
+        console.log(err);
+        unsuccessfulRegistration();
+      }
     },
-    onSuccess: console.log('mutate function success'),
+    onSuccess: console.log("mutate function success"),
   });
   const handleRegister = async e => {
     e.preventDefault();

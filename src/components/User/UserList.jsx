@@ -59,10 +59,13 @@ const UserList = () => {
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        {
+                          item?.image? <img
+                          src={item.image?item.image:"https://icons8.com/icon/3UMVyt9MxcTn/businessman"}
+                          alt="User"
+                        /> : <img width="48" height="48" src="https://img.icons8.com/ink/48/businessman.png" alt="User"/>
+                        }
+                        
                       </div>
                     </div>
                     <div>

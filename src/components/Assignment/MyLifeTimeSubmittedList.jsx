@@ -50,16 +50,16 @@ const MyLifeTimeSubmittedList = () => {
     },
   });
   const progressStatisticsCheck = useQuery({
-    queryKey: ['progresss'],
-   queryFn: async () => {
-      try{
-        const res = await axiosSecure.get(`/progressStatisticsCheck?userCreationTime=${userCreationTime}`,);
+    queryKey: ["progresss"],
+    queryFn: async () => {
+      try {
+        const res = await axiosSecure.get(
+          `/progressStatisticsCheck?userCreationTime=${userCreationTime}`
+        );
         return res.data;
+      } catch (err) {
+        throw new Error(err);
       }
-      catch(err){
-        throw new Error(err)
-      }
-      
     },
     onSuccess: () => {
       console.log("progress statistics function executed successfully");
@@ -82,6 +82,20 @@ const MyLifeTimeSubmittedList = () => {
         return "bg-gray-400";
     }
   };
+  if (progressStatisticsCheck.isLoading) {
+    return (
+      <div className="flex justify-center items-center my-8">
+        <p className="text-5xl"> Loading...</p>
+      </div>
+    );
+  }
+  if (!userTotalSubmissionCount) {
+    return (
+      <div className="flex justify-center items-center my-8">
+        <p className="text-5xl"> Empty..</p>
+      </div>
+    );
+  }
 
   return (
     <div className="">
@@ -89,7 +103,9 @@ const MyLifeTimeSubmittedList = () => {
         {progressStatisticsCheck && userTotalSubmissionCount && (
           <ProgressStatisticsPieChart
             userTotalSubmissionCount={userTotalSubmissionCount}
-            docAfterCreationTime={progressStatisticsCheck?.data?.docCountAfterCreationUser}
+            docAfterCreationTime={
+              progressStatisticsCheck?.data?.docCountAfterCreationUser
+            }
           ></ProgressStatisticsPieChart>
         )}
       </div>
