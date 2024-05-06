@@ -38,9 +38,9 @@ const Register = () => {
         // console.log("registration response: ",res);
         // console.log("user insert res response: ",userinsertres);
         if(userinsertres){
-          logOut();
+          // logOut();
           successRegistration();
-          navigate("/signin");
+          navigate("/");
         }
       } catch (err) {
         console.log(err);
@@ -114,9 +114,7 @@ const Register = () => {
               </div>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary bg-base-500 border-none hover:bg-base-600">
-                Register
-              </button>
+            <button className="btn rounded-sm">Sign Up</button>
             </div>
           </form>
         </div>
