@@ -21,6 +21,7 @@ const AssignmentForm = () => {
   const cloudName = "djyzlmzoe";
   const uploadPreset = "vqe3dxyc";
   const navigate = useNavigate();
+  const [isUploading, setIsUploading] = useState("false");
   //FUNCTIONS
   const successAssignmentCreation = () => {
     return toast.success("Assignment created successfully!");
@@ -32,13 +33,24 @@ const AssignmentForm = () => {
     formData.append("file", droppedImage);
     formData.append("upload_preset", uploadPreset);
     formData.append("cloud_name", cloudName);
-
-    axios
-      .post(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, formData)
-      .then(res => setImage(res.data.secure_url))
-      .catch(error => console.log(error));
-
-    console.log("image url: ", image);
+    try {
+      setImage("uploading");
+      axios
+        .post(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, formData)
+        .then(res => {
+          setImage(res.data.secure_url);
+          console.log("isUploading:", isUploading);
+          // setIsUploading(false);
+        })
+        .catch(error => console.log(error));
+      console.log("image url: ", image);
+      console.log("isUploading:", isUploading);
+    } catch (err) {
+      console.log("error uploading image: ", err);
+    } finally {
+      console.log("isUploading:", isUploading);
+      // setIsUploading("false");
+    }
   };
   const handleSubmitMutation = ({ assignmentDetails }) => {
     axiosSecure
@@ -56,7 +68,6 @@ const AssignmentForm = () => {
       })
       .then(res => {
         console.log("gg", res);
-        
       })
       .catch(error => {
         console.log(error);
@@ -79,6 +90,7 @@ const AssignmentForm = () => {
 
   const onDrop = useCallback(
     (acceptedFiles, rejectedFiles) => {
+      setImage("uploading");
       if (acceptedFiles.length > 0) {
         const droppedImage = acceptedFiles[0];
         handleImageLinkGenerate(droppedImage);
@@ -87,9 +99,10 @@ const AssignmentForm = () => {
       }
       rejectedFiles.forEach(element => {
         console.log("rejected file is :", element);
+        setImage("");
       });
     },
-    [image]
+    [handleImageLinkGenerate, image]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -244,12 +257,17 @@ const AssignmentForm = () => {
           <p>Drag & drop any image, or click to select any image</p>
         )}
       </div>
+
       <div className="w-24">
-        {image ? (
+        {image === "uploading" ? (
+          <div className="flex justify-center items-center">
+            <span className="loading loading-spinner loading-md my-4"></span>
+          </div>
+        ) : (
           <div>
             <img src={image} alt="" />
           </div>
-        ) : null}
+        )}
       </div>
 
       <div className="mt-6">
