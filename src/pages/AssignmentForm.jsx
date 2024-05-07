@@ -200,19 +200,7 @@ const AssignmentForm = () => {
         />
       </div>
 
-      {/* <div className="mb-4">
-        <label htmlFor="thumbnailUrl" className="block text-sm font-medium text-base-600">
-          Thumbnail Image URL
-        </label>
-        <input
-          type="text"
-          id="thumbnailUrl"
-          name="thumbnailUrl"
-          value={thumbnailUrl}
-          onChange={(e) => setThumbnailUrl(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md text-grey-600"
-        />
-      </div>  */}
+    
 
       <div className="mb-4">
         <label
@@ -250,7 +238,7 @@ const AssignmentForm = () => {
         />
       </div>
       <div {...getRootProps()} className="border p-8 rounded-md bg-base-100">
-        <input {...getInputProps()} required />
+        <input {...getInputProps()} name="thumbnail" tabIndex="-1"  />
         {isDragActive ? (
           <p>Drop the files here ...</p>
         ) : (
