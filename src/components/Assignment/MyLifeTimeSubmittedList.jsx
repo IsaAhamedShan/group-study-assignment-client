@@ -26,7 +26,7 @@ const MyLifeTimeSubmittedList = () => {
     queryFn: async () => {
       const response = await axiosSecure.get(
         `/usersLifeTimeSubmittedList?email=${user?.email}`,
-        { withCredentials: true }
+
       );
       // console.log("res from life time submission  :", response?.data);
 
