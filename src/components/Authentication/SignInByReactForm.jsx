@@ -63,6 +63,7 @@ const SignInByReactForm = () => {
         axiosSecure
           .post("/jwt", user)
           .then(res => {
+            localStorage.setItem("access-token",res.data?.token)
             console.log(
               "cookie created and stored In localStorage successfully from google signin.",
               res

@@ -9,7 +9,8 @@ const axiosSecure = axios.create({
 const useAxiosSecure = () => {
   useEffect(() => {
     axiosSecure.interceptors.request.use(config => {
-      console.log("Request Headers:", config?.headers?.Authorization);
+      config.headers.authorization = `Bearer ${localStorage.getItem("access-token")}`
+      // console.log("Request config:", config.headers?.authorization);
       return config;
     }),
     error => {
