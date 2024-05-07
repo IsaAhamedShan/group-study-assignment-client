@@ -86,7 +86,7 @@ const {user} = useContext(AuthContext)
         {pdfFile? null:(
             <div>
             <div {...getRootProps()} className="border p-8 rounded-md bg-base-100">
-              <input {...getInputProps()} required />
+              <input {...getInputProps()}  />
               {isDragActive ? (
                 <p>Drop the PDF here...</p>
               ) : (

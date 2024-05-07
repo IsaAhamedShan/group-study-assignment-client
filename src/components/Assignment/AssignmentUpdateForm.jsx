@@ -217,7 +217,7 @@ const AssignmentUpdateForm = ({ data }) => {
         />
       </div>
       <div {...getRootProps()} className="border p-8 rounded-md bg-base-100 font-roboto">
-        <input {...getInputProps()} required />
+        <input {...getInputProps()}  />
         {isDragActive ? (
           <p>Drop the files here ...</p>
         ) : (
