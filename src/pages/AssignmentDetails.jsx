@@ -9,7 +9,6 @@ import { AuthContext } from "../provider/AuthProvider";
 import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 
 const AssignmentDetails = ({ id,assignmentComplete }) => {
-  // const {id} = useParams()
   console.log("id got in assignment details: ", id);
   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
@@ -31,12 +30,7 @@ const AssignmentDetails = ({ id,assignmentComplete }) => {
 
     fetchData();
   }, [id]);
-  //   const handleMark=(e)=>{
-  //     e.preventDefault()
-  //     const form = e.target;
-  //     const value = form.mark.value;
-  // console.log(value)
-  //   }
+
 
   console.log("id is :", id);
   return (

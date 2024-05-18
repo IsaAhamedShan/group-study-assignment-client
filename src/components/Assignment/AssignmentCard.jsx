@@ -1,6 +1,6 @@
 import format from "date-fns/format";
 import { motion } from "framer-motion";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AssignmentDetails from "../../pages/AssignmentDetails";
 import { AuthContext } from "../../provider/AuthProvider";
 // import AssignmentDetails from "../";

@@ -3,6 +3,8 @@ import { FaUserCircle } from "react-icons/fa";
 import { NavLink, useLocation } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
 import mainLogo from "../../assets/mainLogo.png";
+import educollab from '../../assets/educollab.png'
+import educollab_text from '../../assets/educollab_text.png'
 import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -96,7 +98,8 @@ const Navbar = () => {
             {navList}
           </ul>
         </div>
-        <img src={mainLogo} className=" w-32 md:w-48" alt="" />
+        <img src={educollab} className=" w-8 md:w-10" alt="" />
+        <img src={educollab_text} className=" w-28 md:w-44" alt="" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 [&>li]:p-2">{navList}</ul>
