@@ -93,6 +93,7 @@ const AssignmentCard = ({
             <AssignmentDetails
               id={idForDetails}
               assignmentComplete={assignmentComplete}
+              item={item}
             ></AssignmentDetails>
 
             <div className="modal-action">
